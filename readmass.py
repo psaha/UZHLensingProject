@@ -1,4 +1,4 @@
-##Comments to be added soon
+#readmass
 
 #import libraries
 import pickle
@@ -36,7 +36,7 @@ for m in range(len(ensem)):
     ensem1d = np.reshape(ensem[m],(N**2))   #reshape 2D array as 1D array
     diff = ensem1d - mean                   #delta(k) = datum k - mean <k>
     out = np.outer(diff,diff)               #outer products of pairs of delta(k)
-    if m==0:                                #create MoI tensor
+    if m==0:                                #create MoI tensor (outer products of pairs of values)
         outsum = out
     else:
         outsum = outsum + out
@@ -55,7 +55,7 @@ def profile(params):
 def residuals(params):
     f = profile(params)                     #f = k(param)
     f = np.reshape(f,(N**2))                #reshape f into 1D array
-    f -= change                             #f = f-change
+    f -= mean                             #changed 'change' (which was an experiment) to 'mean', consider changing this in all scripts or at least think about it#f = f-change
 #    df = 5*[0]
     for m in range(1,6):
 #        df[m-1] = np.inner(f,vecs[:,-m])/vals[-m]      #chi-squared attempt
@@ -69,7 +69,7 @@ print(lsq)
 
 
 
-F = profile(lsq)                            #profile?
+F = profile(lsq)
 # F = np.reshape(mean,(N,N))
 lev = np.linspace(np.amin(F),np.amax(F),21) 
 pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of parametrized model
