@@ -77,16 +77,24 @@ lsq = opt.leastsq(residuals,ini)[0]         #perform least squares fit on f
 
 a = lsq[0]
 n = lsq[1]
+#maybe user can input required no of sf?
 print 'a = {0:.3f}, n = {1:.3f}'.format(a,n) #prints values of optimised parameters
 
 
 F = profile(lsq)                            #F = k(param) with optimised parameters
 # F = np.reshape(mean,(N,N))
-lev = np.linspace(np.amin(F),np.amax(F),21) 
+lev = np.linspace(np.amin(F),np.amax(F),21) #alternative graph plotting, currently unused
 pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of parametrized model
 F = np.reshape(mean,(N,N))
 pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of <k> on same graph
 pl.axes().set_aspect('equal')
+#pl.xlabel('x axis')                        #some experiments with graph formatting
+#pl.ylabel('y axis')
+#pl.title('Title')
+#pl.text(0,0,r'Text')
+#pl.xlim(-20,20)
+#pl.ylim(-20,20)
+#pl.grid(True)
 pl.show()        
 
 #pl.savefig() for graph

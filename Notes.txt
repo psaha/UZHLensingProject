@@ -14,4 +14,10 @@ Stuff I've tested
 
 Adding runtime calculator - currently prints 0 runtime which is probably to do with when it starts measuring it. To be tested further later
 
-To do: test argument parsing with the cuboid code and see if I can translate the idea across
+Test argument parsing with the cuboid code and see if I can translate the idea across
+
+Suggestion: maybe have a collection of potential parameterised models and the user can choose one depending on the data going in? 
+Eg. a particular type of gravitational lens is more likely to look like model a and another like model b. Something to ask about...
+Probably easier than finding a way to type in a whole model such that the program would understand.
+
+Alternative idea is make it into a module
