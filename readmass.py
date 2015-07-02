@@ -49,54 +49,8 @@ vals,vecs = np.linalg.eigh(outsum)          #find eigenvecs/vals of MoI tensor
 
 # print vals
 
-modelo = raw_input('Enter model here: ',)
-print modelo
-
-#************
-#Test argument getting
-
-def run_function(input_list):
-  args = get_arguments_from_command_line(input_list)
-  print args
-  print "args.random_float_number is ", args.random_float_number
-  print "args.random_message is ", args.random_message
-  print "dir(args) is ", dir(args)
-  import code, traceback; code.interact(local=dict(globals(), **locals()), banner="\n".join(traceback.format_stack(limit=10) ) )
-  return # again unneccesary, and misspelt probably
-
-def get_arguments_from_command_line(input_list):
-  #This processes your arguments from the function line
-  import argparse
-  parser = argparse.ArgumentParser(
-    description = "This is the program for determining what the operations are for NCS"
-    )
-  # Note, in the add arguments, the -- are importantish
-  parser.add_argument(
-    "--random_float_number",
-    metavar = "float",
-    type = float,
-    default = 1.0,
-    help = "Takes in any float",
-    )
-  parser.add_argument(
-    "--random_message",
-    metavar = "string",
-    default = "Good morning",
-    help = "Takes in any random string"
-    )
-  args = parser.parse_args(input_list)
-  # args now has all the above parameters.
-  # e.g. if you type in args.random_message
-  print args.random_message
-  # Giving back args
-  return args
-
-
-#**********************************************888
-
-
-
-
+#modelo = raw_input('Enter model here: ',)
+#print modelo
 
 
 def profile(params):
