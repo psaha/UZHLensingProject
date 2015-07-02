@@ -1,6 +1,4 @@
 #readmass
-#small edit to test branching
-#second branching test
 
 #import libraries
 import pickle
@@ -45,14 +43,21 @@ for m in range(len(ensem)):
 outsum = outsum/len(ensem)                  #scale MoI by tensor size of ensemble
 vals,vecs = np.linalg.eigh(outsum)          #find eigenvecs/vals of MoI tensor
 
-change = (vals[-1]**0.5)*vecs[:,-1] + mean  #<k> + sqrt(val)*vec for largest val (explain physics again?)
-plotchange = np.reshape(change,(N,N))       #reshape as 2D array for plotting
+#An experiment, no longer used:
+#change = (vals[-1]**0.5)*vecs[:,-1] + mean  #<k> + sqrt(val)*vec for largest val (explain physics again?)
+#plotchange = np.reshape(change,(N,N))       #reshape as 2D array for plotting
 
 # print vals
+
+modelo = raw_input('Enter model here: ',)
+print modelo
 
 def profile(params):
     a,n=params[0],params[1]#,params[2],params[3]
     return a*(1+X*X+Y*Y)**-n                #define test parametrized functional form k(param)
+
+
+#print 'The functional form used is %s with parameters a and n' % model #prints k(param)
 
 def residuals(params):
     f = profile(params)                     #f = k(param)
@@ -67,17 +72,20 @@ def residuals(params):
 
 ini = [3,0.5]                               #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]         #perform least squares fit on f
-print(lsq)
+#print(lsq)
+
+a = lsq[0]
+n = lsq[1]
+print 'a = {0:.3f}, n = {1:.3f}'.format(a,n) #prints values of optimised parameters
 
 
-
-F = profile(lsq)
+F = profile(lsq)                            #F = k(param) with optimised parameters
 # F = np.reshape(mean,(N,N))
 lev = np.linspace(np.amin(F),np.amax(F),21) 
 pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of parametrized model
-F = np.reshape(change,(N,N))
-pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of <k> + sqrt(val)*vec for largest val on same graph
+F = np.reshape(mean,(N,N))
+pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of <k> on same graph
 pl.axes().set_aspect('equal')
-pl.show()                                   
+pl.show()        
 
 #pl.savefig() for graph
