@@ -9,6 +9,7 @@ import scipy.optimize as opt
 
 #open data file
 mname = 'ASW0007k4r/012771'
+mname = 'ASW0000h2m/007022'
 fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 
