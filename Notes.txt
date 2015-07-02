@@ -1,0 +1,15 @@
+Stuff I should get the program to print:
+
+What's being put in ie. data and model
+
+What you get out ie. parameter values
+
+Opportunity to enter your own model
+
+Label graph title axes etc, try to make it obvious which is param model and which is pix model?
+
+
+
+Stuff I've tested
+
+Adding runtime calculator - currently prints 0 runtime which is probably to do with when it starts measuring it. To be tested further later
