@@ -13,3 +13,5 @@ Label graph title axes etc, try to make it obvious which is param model and whic
 Stuff I've tested
 
 Adding runtime calculator - currently prints 0 runtime which is probably to do with when it starts measuring it. To be tested further later
+
+To do: test argument parsing with the cuboid code and see if I can translate the idea across
