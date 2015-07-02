@@ -1,4 +1,4 @@
-#testfile
+#testfile: parameterisation with good fit but runtime warning
 
 #import libraries
 import pickle
