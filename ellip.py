@@ -17,15 +17,28 @@ def poten_SIE(x,y,reinst,ell,ell_pa):
 # kappa(zl=0.5,zs=1) = 0.4312*kappa_inf(zl=0.5)
 
 N = 25
-S = 5
-R = (N-1)/2
+S = 3
+R = (N-1)/2 + 0.5*(1-1./S)
 x = np.linspace(-R,R,N*S)
 X,Y = np.meshgrid(x,x)
 
 F = poten_SIE(X,Y,10,0.5,45)
 
-lev = np.linspace(np.amin(F),np.amax(F),21)
-pl.contour(X,Y,F, levels=lev)
+M = 0*F
+M[1:-1,1:-1] = F[2:,1:-1] + F[:-2,1:-1] + F[1:-1,2:] + F[1:-1,:-2] \
+             - 4*F[1:-1,1:-1]
+
+K = np.ndarray(shape=(N,N))
+for i in range(N):
+    for j in range(N):
+        K[i,j] = np.sum(M[i*S:(i+1)*S,j*S:(j+1)*S])
+R = (N-1)/2
+x = np.linspace(-R,R,N)
+X,Y = np.meshgrid(x,x)
+
+# M = np.log(abs(M)+1e-12)
+lev = np.linspace(np.amin(K),np.amax(K),21)
+pl.contour(X,Y,K, levels=[0,1,2,3,4,5])
 pl.axes().set_aspect('equal')
 pl.show()        
 
