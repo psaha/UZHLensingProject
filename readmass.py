@@ -58,6 +58,7 @@ def profile(params):
     a,n=params[0],params[1]#,params[2],params[3]
     return a*(1+X*X+Y*Y)**-n                #define test parametrized functional form k(param)
 
+from ellip import profile
 
 #print 'The functional form used is %s with parameters a and n' % model #prints k(param)
 
@@ -72,7 +73,7 @@ def residuals(params):
     return f
 
 
-ini = [3,0.5]                               #initial values for parameters
+ini = [3,0.5,0]                               #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]         #perform least squares fit on f
 #print(lsq)
 

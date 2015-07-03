@@ -44,7 +44,7 @@ X,Y = np.meshgrid(x,x)
 
 # M = np.log(abs(M)+1e-12)
 lev = np.linspace(np.amin(K),np.amax(K),21)
-pl.contour(X,Y,K, levels=[0,1,2,3,4,5])
-pl.axes().set_aspect('equal')
-pl.show()        
+#pl.contour(X,Y,K, levels=[0,1,2,3,4,5])
+#pl.axes().set_aspect('equal')
+#pl.show()        
 
