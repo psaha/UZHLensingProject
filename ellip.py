@@ -18,6 +18,14 @@ def poten_SIE(x,y,reinst,ell,ell_pa):
 
 N = 25
 
+def grid(params):
+    reinst,ell,ell_pa = params[0],params[1],params[2]    
+    R = (N-1)/2
+    x = np.linspace(-R,R,N)
+    X,Y = np.meshgrid(x,x)
+    F = poten_SIE(X,Y,reinst,ell,ell_pa)
+    return F
+
 def profile(params):
     reinst,ell,ell_pa = params[0],params[1],params[2]
     R = (N-1)/2

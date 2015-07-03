@@ -58,7 +58,7 @@ def profile(params):
     a,n=params[0],params[1]#,params[2],params[3]
     return a*(1+X*X+Y*Y)**-n                #define test parametrized functional form k(param)
 
-from ellip import profile
+from ellip import profile, grid
 
 #print 'The functional form used is %s with parameters a and n' % model #prints k(param)
 
@@ -69,7 +69,7 @@ def residuals(params):
 #    df = 5*[0]
     for m in range(1,6):
 #        df[m-1] = np.inner(f,vecs[:,-m])/vals[-m]      #chi-squared attempt
-        f -= np.inner(f,vecs[:,-m])*vecs[:,-m]          #?? sthg to do with delta(k(param))
+        f -= np.inner(f,vecs[:,-m])*vecs[:,-m]          #removing projections along principle axes
     return f
 
 
@@ -77,15 +77,18 @@ ini = [3,0.5,0]                               #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]         #perform least squares fit on f
 #print(lsq)
 
-a = lsq[0]
-n = lsq[1]
+param1 = lsq[0]
+param2 = lsq[1]
+param3 = lsq[2]
 #maybe user can input required no of sf?
-print 'a = {0:.3f}, n = {1:.3f}'.format(a,n) #prints values of optimised parameters
+print 'param1 = {0:.3e}, param2 = {1:.3e}, param3 = {2:.3e}'.format(param1,param2,param3) #prints values of optimised parameters
 
+G = grid(lsq)
 
 F = profile(lsq)                            #F = k(param) with optimised parameters
 # F = np.reshape(mean,(N,N))
-lev = np.linspace(np.amin(F),np.amax(F),21) #alternative graph plotting, currently unused
+lev = np.linspace(np.amin(G),np.amax(G),21) #alternative graph plotting, currently unused
+#pl.contour(X,Y,G, levels=lev)              #gravitational potential
 pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of parametrized model
 F = np.reshape(mean,(N,N))
 pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of <k> on same graph

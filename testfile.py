@@ -8,6 +8,7 @@ import scipy.optimize as opt
 
 #open data file
 mname = 'ASW0007k4r/012771'
+mname = 'ASW0000h2m/007022'
 fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 
@@ -49,8 +50,9 @@ plotchange = np.reshape(change,(N,N))       #reshape as 2D array for plotting
 # print vals
 
 def profile(params):
-    a,b,n,h=params[0],params[1],params[2],params[3]
-    return a*(h+X*X+Y*Y+b*X*Y)**-n                #define test parametrized functional form k(param)
+    a,b,n,h,c=params[0],params[1],params[2],params[3],params[4]
+    #return a*(h+X*X+Y*Y+b*X*Y)**-n                #define test parametrized functional form k(param)
+    return a*(h+c*X*X+Y*Y+b*X*Y)**-n
 
 def residuals(params):
     f = profile(params)                     #f = k(param)
@@ -59,22 +61,30 @@ def residuals(params):
 #    df = 5*[0]
     for m in range(1,6):
 #        df[m-1] = np.inner(f,vecs[:,-m])/vals[-m]      #chi-squared attempt
-        f -= np.inner(f,vecs[:,-m])*vecs[:,-m]          #?? sthg to do with delta(k(param))
+        f -= np.inner(f,vecs[:,-m])*vecs[:,-m]          #removing projections along principle axes
     return f
 
 
-ini = [1,-1.3,3.7,1.6]                               #initial values for parameters
+ini = [1,-1.3,3.7,1.6,1]                               #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]         #perform least squares fit on f
-print(lsq)
+#print(lsq)
+
+param1 = lsq[0]
+param2 = lsq[1]
+param3 = lsq[2]
+param4 = lsq[3]
+param5 = lsq[4]
+
+print 'param1 = {0:.3e}, param2 = {1:.3e}, param3 = {2:.3e}, param4 = {3:.3e}, param5 = {4:.3e}'.format(param1,param2,param3,param4,param5) #prints values of optimised parameters
 
 
 
 F = profile(lsq)                            #profile?
 # F = np.reshape(mean,(N,N))
-lev = np.linspace(np.amin(F),np.amax(F),21) 
-pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of parametrized model
+lev = np.linspace(np.amin(F),np.amax(F),11) 
+pl.contour(X,Y,F, levels=lev)       #plot graph of parametrized model
 F = np.reshape(change,(N,N))
-pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of <k> + sqrt(val)*vec for largest val on same graph
+pl.contour(X,Y,F, levels=lev)       #plot graph of <k> + sqrt(val)*vec for largest val on same graph
 pl.axes().set_aspect('equal')
 pl.show()                                   
 
