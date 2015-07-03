@@ -41,7 +41,7 @@ for m in range(len(ensem)):
         outsum = out
     else:
         outsum = outsum + out
-outsum = outsum/len(ensem)                  #scale MoI by tensor size of ensemble
+outsum = outsum/len(ensem)                  #scale MoI by tensor size of ensemble - makes no difference...
 vals,vecs = np.linalg.eigh(outsum)          #find eigenvecs/vals of MoI tensor
 
 #An experiment, no longer used:
