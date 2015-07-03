@@ -10,6 +10,7 @@ import scipy.optimize as opt
 
 #open data file
 mname = 'ASW0007k4r/012771'
+#mname = 'ASW0000h2m/007022'
 fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 
@@ -47,13 +48,15 @@ plotchange = np.reshape(change,(N,N))       #reshape as 2D array for plotting
 # print vals
 
 def profile(params):
-    a,n=params[0],params[1]#,params[2],params[3]
-    return a*(1+X*X+Y*Y)**-n                #define test parametrized functional form k(param)
+    a,n=params[0],params[1]#,params[2]#,params[3]
+    #return a*(1+X*X+Y*Y+b*X*Y)**-n                #define test parametrized functional form k(param)
+    return a*(1+X*X+Y*Y)**-n
+
 
 def residuals(params):
     f = profile(params)                     #f = k(param)
     f = np.reshape(f,(N**2))                #reshape f into 1D array
-    f -= change                             #f = f-change
+    f -= mean                             #f = f-mean
     df = 5*[0]
     for m in range(1,6):
         df[m-1] = np.inner(f,vecs[:,-m])/vals[-m]      #chi-squared attempt
@@ -61,7 +64,7 @@ def residuals(params):
     return df
 
 
-ini = [3,0.5]                               #initial values for parameters
+ini = [3,1,-1]                               #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]         #perform least squares fit on f
 print(lsq)
 
@@ -69,10 +72,10 @@ print(lsq)
 
 F = profile(lsq)
 pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of parametrized model
-#F = np.reshape(mean,(N,N))
+F = np.reshape(mean,(N,N))
 #lev = np.linspace(np.amin(F),np.amax(F),21) 
 #pl.contour(X,Y,F, levels=[0,1,2,3,4])       
-F = np.reshape(change,(N,N))
+#F = np.reshape(change,(N,N))
 pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of <k> + sqrt(val)*vec for largest val on same graph
 pl.axes().set_aspect('equal')
 pl.show()  
