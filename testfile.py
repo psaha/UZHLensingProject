@@ -9,6 +9,7 @@ import scipy.optimize as opt
 #open data file
 mname = 'ASW0007k4r/012771'
 mname = 'ASW0000h2m/007022'
+#mname = 'gribbles'
 fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 
@@ -44,8 +45,9 @@ for m in range(len(ensem)):
 outsum = outsum/len(ensem)                  #scale MoI by tensor size of ensemble
 vals,vecs = np.linalg.eigh(outsum)          #find eigenvecs/vals of MoI tensor
 
-change = (vals[-1]**0.5)*vecs[:,-1] + mean  #<k> + sqrt(val)*vec for largest val (explain physics again?)
-plotchange = np.reshape(change,(N,N))       #reshape as 2D array for plotting
+#An experiment, no longer used
+#change = (vals[-1]**0.5)*vecs[:,-1] + mean  #<k> + sqrt(val)*vec for largest val (explain physics again?)
+#plotchange = np.reshape(change,(N,N))       #reshape as 2D array for plotting
 
 # print vals
 
@@ -53,11 +55,12 @@ def profile(params):
     a,b,n,h,c=params[0],params[1],params[2],params[3],params[4]
     #return a*(h+X*X+Y*Y+b*X*Y)**-n                #define test parametrized functional form k(param)
     return a*(h+c*X*X+Y*Y+b*X*Y)**-n
+    #return a*(1+X*X+Y*Y)**-n
 
 def residuals(params):
     f = profile(params)                     #f = k(param)
     f = np.reshape(f,(N**2))                #reshape f into 1D array
-    f -= change                             #f = f-change
+    f -= mean                             #f = f-mean (used to be f-change)
 #    df = 5*[0]
     for m in range(1,6):
 #        df[m-1] = np.inner(f,vecs[:,-m])/vals[-m]      #chi-squared attempt
@@ -79,12 +82,18 @@ print 'param1 = {0:.3e}, param2 = {1:.3e}, param3 = {2:.3e}, param4 = {3:.3e}, p
 
 
 
-F = profile(lsq)                            #profile?
+F = profile(lsq)                            
+F1d = np.reshape(F,N**2)
 # F = np.reshape(mean,(N,N))
 lev = np.linspace(np.amin(F),np.amax(F),11) 
-pl.contour(X,Y,F, levels=lev)       #plot graph of parametrized model
-F = np.reshape(change,(N,N))
-pl.contour(X,Y,F, levels=lev)       #plot graph of <k> + sqrt(val)*vec for largest val on same graph
+pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of parametrized model
+
+change = mean
+for m in range(1,6):
+    change += np.inner(F1d,vecs[:,-m])*vecs[:,-m] #adding projections (of the parameterised form along the eigenvectors) to the mean
+H = np.reshape(change,(N,N))
+
+pl.contour(X,Y,H, levels=[0,1,2,3,4])       #plot graph of 'change' for largest val on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 pl.axes().set_aspect('equal')
 pl.show()                                   
 

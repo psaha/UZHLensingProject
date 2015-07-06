@@ -9,6 +9,7 @@ import scipy.optimize as opt
 #open data file
 mname = 'ASW0007k4r/012771'
 mname = 'ASW0000h2m/007022'
+mname = 'gribbles'
 fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 
@@ -26,7 +27,19 @@ for m in range(len(ensem)):
     else:    
         sum = sum+ensem1d                   #sum elements in the ensemble
 mean = sum/len(ensem)                       #calculate mean
-plotmean = np.reshape(mean,(N,N))           #reshape mean as 2D array
+
+
+"""Alternative method for calculating mean"""
+
+for m in range(len(ensem)):
+    ensem1d = np.reshape(ensem[m],(N**2))
+    mean_m = np.mean(ensem1d[m])
+    if m==0:
+        mean1 = np.array([mean_m])
+    else:
+        mean1 = np.append([mean1], [mean_m])
+
+"""Why doesn't it work?"""
 
 #lev = np.linspace(0,10,21)
 #pl.contour(X,Y,plotmean, levels=[0,1,2,3])
@@ -48,11 +61,6 @@ vals,vecs = np.linalg.eigh(outsum)          #find eigenvecs/vals of MoI tensor
 #change = (vals[-1]**0.5)*vecs[:,-1] + mean  #<k> + sqrt(val)*vec for largest val (explain physics again?)
 #plotchange = np.reshape(change,(N,N))       #reshape as 2D array for plotting
 
-# print vals
-
-#modelo = raw_input('Enter model here: ',)
-#print modelo
-
 
 def profile(params):
     a,n=params[0],params[1]#,params[2],params[3]
@@ -65,7 +73,7 @@ from ellip import profile, grid
 def residuals(params):
     f = profile(params)                     #f = k(param)
     f = np.reshape(f,(N**2))                #reshape f into 1D array
-    f -= mean                             #changed 'change' (which was an experiment) to 'mean', consider changing this in all scripts or at least think about it#f = f-change
+    f -= mean                             #changed 'change' (which was an experiment) to 'mean'#f = f-change
 #    df = 5*[0]
     for m in range(1,6):
 #        df[m-1] = np.inner(f,vecs[:,-m])/vals[-m]      #chi-squared attempt
@@ -81,17 +89,25 @@ param1 = lsq[0]
 param2 = lsq[1]
 param3 = lsq[2]
 #maybe user can input required no of sf?
-print 'param1 = {0:.3e}, param2 = {1:.3e}, param3 = {2:.3e}'.format(param1,param2,param3) #prints values of optimised parameters
+print 'Einstein radius = {0:.3e}, Ellipticity = {1:.3e}, ell_pa (?projection angle) = {2:.3e}'.format(param1,param2,param3) #prints values of optimised parameters
 
-G = grid(lsq)
+G = grid(lsq)                               #For plotting grav ptl
 
 F = profile(lsq)                            #F = k(param) with optimised parameters
+
+F1d = np.reshape(F,N**2)
+
 # F = np.reshape(mean,(N,N))
 lev = np.linspace(np.amin(G),np.amax(G),21) #alternative graph plotting, currently unused
-#pl.contour(X,Y,G, levels=lev)              #gravitational potential
+#pl.contour(X,Y,G, levels=lev)              #plot of gravitational potential
 pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of parametrized model
-F = np.reshape(mean,(N,N))
-pl.contour(X,Y,F, levels=[0,1,2,3,4])       #plot graph of <k> on same graph
+
+change = mean
+for m in range(1,6):
+    change += np.inner(F1d,vecs[:,-m])*vecs[:,-m] #adding projections (of the parameterised form along the eigenvectors) to the mean
+
+H = np.reshape(change,(N,N))
+pl.contour(X,Y,H, levels=[0,1,2,3,4])       #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 pl.axes().set_aspect('equal')
 #pl.xlabel('x axis')                        #some experiments with graph formatting
 #pl.ylabel('y axis')

@@ -4,8 +4,6 @@ What's being put in ie. data and model
 
 What you get out ie. parameter values
 
-Opportunity to enter your own model
-
 Label graph title axes etc, try to make it obvious which is param model and which is pix model?
 
 
