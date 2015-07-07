@@ -1,5 +1,13 @@
 import numpy as np
 #import matplotlib.pyplot as pl
+import pickle
+mname = 'ASW000102p/WM4H5RZXQZ_hires' #hi res makes a difference
+fil = open(mname+'.pkl')
+chutney = pickle.load(fil)
+ensem = chutney['grids']
+pixrad = chutney['pixrad']
+N = 2*pixrad+1
+R = chutney['maprad']
 
 # See eqns (33-35) from Keeton astro-ph/0102341
 def poten_SIE(x,y,reinst,ell,ell_pa): #ell_pa?
@@ -16,14 +24,14 @@ def poten_SIE(x,y,reinst,ell,ell_pa): #ell_pa?
 #s=0 but why? s is the scale radius but what does that mean?
 #"in limit of singular (s=0) and spherical (q=1) model, b = Einst radius"
 #but we are assuming b=reinst and s=0 and not q=1
+    #all sims have density go to infinity at origin so s=0 (makes eqns simpler) and this is a reasonable approximation to make for real galaxies (often black hole at centre)
     
 # kappa(zl=0.5,zs=1) = 0.4312*kappa_inf(zl=0.5)
 
-N = 25
+
 
 def grid(params):
     reinst,ell,ell_pa = params[0],params[1],params[2]    
-    R = (N-1)/2
     x = np.linspace(-R,R,N)
     X,Y = np.meshgrid(x,x)
     F = poten_SIE(X,Y,reinst,ell,ell_pa)
@@ -31,10 +39,9 @@ def grid(params):
 
 def profile(params):
     reinst,ell,ell_pa = params[0],params[1],params[2]
-    R = (N-1)/2
     S = 3
-    R = (N-1)/2 + 0.5*(1-1./S)
-    x = np.linspace(-R,R,N*S)
+    r = R + 0.5*(1-1./S)*R/pixrad
+    x = np.linspace(-r,r,N*S)
     X,Y = np.meshgrid(x,x)
     F = poten_SIE(X,Y,reinst,ell,ell_pa)
     M = 0*F
