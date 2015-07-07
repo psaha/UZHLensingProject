@@ -17,19 +17,22 @@ fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 """
 
-from ellip import ensem, N, R, profile
+from ellip import ensem, N, R, profile      #ellip is set up for lens 102p (hires)
+
 
 #defining the data as describing points on a 2D surface
-#N = ensem[0].shape[0]
+#N = ensem[0].shape[0]                      #N and R now defined within ellip
 #R = (N-1)/2
 x = np.linspace(-R,R,N)
 X,Y = np.meshgrid(x,x)
 
-fudge = 0.4312
+
+fudge = 0.4312                              #Problems...
+
 
 for m in range(len(ensem)):
     ensem1d = np.reshape(ensem[m],(N**2))   #reshape 2D array as 1D array 
-    ensem1d = fudge*ensem1d
+    ensem1d = fudge*ensem1d                 #multiply by the fudge factor for red shift
     if m==0:    
         sum = ensem1d
     else:    
@@ -39,7 +42,7 @@ mean = sum/len(ensem)                       #calculate mean
 
 for m in range(len(ensem)):
     ensem1d = np.reshape(ensem[m],(N**2))   #reshape 2D array as 1D array
-    ensem1d = fudge * ensem1d    
+    ensem1d = fudge * ensem1d               #multiply by the fudge factor for red shift
     diff = ensem1d - mean                   #delta(k) = datum k - mean <k>
     out = np.outer(diff,diff)               #outer products of pairs of delta(k)
     if m==0:                                #create MoI tensor (outer products of pairs of values)
@@ -50,15 +53,14 @@ outsum = outsum/len(ensem)                  #scale MoI by tensor size of ensembl
 vals,vecs = np.linalg.eigh(outsum)          #find eigenvecs/vals of MoI tensor
 
 
+"""Alternative parameterised form not currently used here"""
 def Xprof(params):
     a,n,b,c,h=params[0],params[1],params[2],params[3],params[4]
     #return a*(1+X*X+Y*Y)**-n               #define test parametrized functional form k(param)
     return a*(h+c*X*X+Y*Y+b*X*Y)**-n
 
-
 #from ellip import profile, grid             #Import isothermal ellipsoid functional form
 
-#Output which functional form is used here?
 
 def residuals(params):
     f = profile(params)                         #f = k(param)
@@ -69,38 +71,44 @@ def residuals(params):
     return f
 
 
-ini = [3,0.5,1,1,1]                             #initial values for parameters
+ini = [3,0.5,1]                             #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]             #perform least squares fit on f
 
 
+"""Print out parameters"""
 param1 = lsq[0]
 param2 = lsq[1]
 param3 = lsq[2]
 #maybe user can input required no of sf?
 print 'Param1 (Einstein radius) = {0:.3e}, Param2 (Ellipticity) = {1:.3e}, Param3 (Position angle of ellipticity) = {2:.3e}'.format(param1,param2,param3) #prints values of optimised parameters
 
+
 #grav = grid(lsq)                                 #For plotting grav ptl
 #lev = np.linspace(np.amin(grav),np.amax(grav),21)
 #pl.contour(X,Y,grav, levels=lev)                 #plot of gravitational potential
 
 
+"""Plot parameterised model"""
 F = profile(lsq)                                  #F = k(param) with optimised parameters
 pl.contour(X,Y,F, levels=[0,1,2,3,4])             #plot graph of parameterised model
 """plot colour-filled contours"""
 lev = np.linspace(np.amin(F),np.amax(F),10)
 #bar = pl.contourf(X,Y,F,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
+#pl.show()
 
 
-
+"""Plot mean"""
 meanplot = np.reshape(mean,(N,N))
 #pl.contour(X,Y,meanplot, levels=[0,1,2,3,4])     #plot graph of mean
 """plot colour-filled contours"""
 lev = np.linspace(np.amin(meanplot),np.amax(meanplot),10)
 #bar = pl.contourf(X,Y,meanplot,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
+#pl.show()
 
 
+"""Plot change"""
 F1d = np.reshape(F,N**2)
 change = mean
 for m in range(1,6):
@@ -113,8 +121,10 @@ bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
 pl.colorbar(bar)
 pl.show()
 
+
+"""Plot difference between parameterised model and 'change'"""
 K = H-F
-#pl.contour(X,Y,H, levels=[0,1,2,3,4])            #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
+#pl.contour(X,Y,K, levels=[0,1,2,3,4])            #plot graph of change - k(param)
 """plot colour-filled contours"""
 lmax = np.amax(abs(K))
 lev = np.linspace(-lmax,lmax,50)
