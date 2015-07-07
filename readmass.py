@@ -25,11 +25,11 @@ from ellip import ensem, N, R, profile
 x = np.linspace(-R,R,N)
 X,Y = np.meshgrid(x,x)
 
-fudge = 1
+fudge = 0.4312
 
 for m in range(len(ensem)):
     ensem1d = np.reshape(ensem[m],(N**2))   #reshape 2D array as 1D array 
-    ensem1d *= fudge
+    ensem1d = fudge*ensem1d
     if m==0:    
         sum = ensem1d
     else:    
@@ -39,7 +39,7 @@ mean = sum/len(ensem)                       #calculate mean
 
 for m in range(len(ensem)):
     ensem1d = np.reshape(ensem[m],(N**2))   #reshape 2D array as 1D array
-    ensem1d *= fudge    
+    ensem1d = fudge * ensem1d    
     diff = ensem1d - mean                   #delta(k) = datum k - mean <k>
     out = np.outer(diff,diff)               #outer products of pairs of delta(k)
     if m==0:                                #create MoI tensor (outer products of pairs of values)

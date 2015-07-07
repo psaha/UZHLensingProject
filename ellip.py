@@ -47,6 +47,7 @@ def profile(params):
     M = 0*F
     M[1:-1,1:-1] = F[2:,1:-1] + F[:-2,1:-1] + F[1:-1,2:] + F[1:-1,:-2] \
                  - 4*F[1:-1,1:-1]
+    M = M*(pixrad/R)**2
     K = np.ndarray(shape=(N,N))
     for i in range(N):
         for j in range(N):
