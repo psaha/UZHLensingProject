@@ -9,6 +9,7 @@ import scipy.optimize as opt
 #open data file
 mname = 'ASW0007k4r/012771'
 mname = 'ASW0000h2m/007022'
+mname = 'ASW0000h2m/IHRULOMX6D'
 #mname = 'gribbles'
 fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
@@ -85,7 +86,7 @@ lev = np.linspace(np.amin(F),np.amax(F),10)
 
 
 meanplot = np.reshape(mean,(N,N))
-#pl.contour(X,Y,meanplot, levels=[0,1,2,3,4])       #plot graph of mean
+pl.contour(X,Y,meanplot, levels=[0,1,2,3,4])       #plot graph of mean
 """plot colour-filled contours"""
 lev = np.linspace(np.amin(meanplot),np.amax(meanplot),10)
 #bar = pl.contourf(X,Y,meanplot,levels=lev,cmap=pl.cm.seismic)
@@ -100,8 +101,8 @@ H = np.reshape(change,(N,N))
 #pl.contour(X,Y,H, levels=[0,1,2,3,4])       #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 """plot colour-filled contours"""
 lev = np.linspace(np.amin(H),np.amax(H),10)
-bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
-pl.colorbar(bar)
+#bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
+#pl.colorbar(bar)
 
 
 pl.axes().set_aspect('equal')
