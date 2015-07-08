@@ -16,7 +16,7 @@ fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 """
 
-from ellip import ensem, N, R, profile      #ellip is set up for lenses 102p and h2m/IHRU... (hires)
+from ellip import ensem, N, R, profile#, grid      #ellip is set up for lenses 102p and h2m/IHRU... (hires)
 
 
 #defining the data as describing points on a 2D surface
@@ -89,9 +89,11 @@ print 'Param1 (Einstein radius) = {0:.3e}, Param2 (Ellipticity) = {1:.3e}, Param
 
 """Plot parameterised model"""
 F = profile(lsq)                                  #F = k(param) with optimised parameters
+##F1d = np.reshape(F,N**2)
+##pl.plot(F1d)
+lev = np.linspace(np.amin(F),np.amax(F),10)
 pl.contour(X,Y,F, levels=[0,1,2,3,4])             #plot graph of parameterised model
 """plot colour-filled contours"""
-lev = np.linspace(np.amin(F),np.amax(F),10)
 #bar = pl.contourf(X,Y,F,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
 pl.title('Param')
@@ -114,10 +116,11 @@ F1d = np.reshape(F,N**2)
 change = mean
 for m in range(1,6):
     change += np.inner(F1d,vecs[:,-m])*vecs[:,-m] #adding projections (of the parameterised form along the eigenvectors) to the mean
+##pl.plot(change)
 H = np.reshape(change,(N,N))
+lev = np.linspace(np.amin(H),np.amax(H),10)
 pl.contour(X,Y,H, levels=[0,1,2,3,4])            #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 """plot colour-filled contours"""
-lev = np.linspace(np.amin(H),np.amax(H),10)
 #bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
 pl.title('Param and Change')
@@ -125,7 +128,7 @@ pl.show()
 
 
 """Plot difference between parameterised model and 'change'"""
-K = H-F
+K = F-H
 #pl.contour(X,Y,K, levels=[0,1,2,3,4])            #plot graph of change - k(param)
 """plot colour-filled contours"""
 lmax = np.amax(abs(K))
@@ -133,7 +136,7 @@ lev = np.linspace(-lmax,lmax,50)
 bar = pl.contourf(X,Y,K,levels=lev,cmap=pl.cm.seismic)
 pl.colorbar(bar)
 pl.axes().set_aspect('equal')
-pl.title('Difference between param and change')
+pl.title('Param - Change')
 pl.show()        
 
 
