@@ -3,14 +3,14 @@
 import numpy as np
 import pickle
 mname = 'ASW000102p/WM4H5RZXQZ_hires'
-#mname = 'ASW0000h2m/IHRULOMX6D'
+mname = 'ASW0000h2m/IHRULOMX6D'
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil)
 ensem = chutney['grids']
 pixrad = chutney['pixrad']
 N = 2*pixrad+1
 R = chutney['maprad']
-
+maximgpos = chutney['maximgpos']
 #pixrad = radius in number of pixels
 #maprad = radius from central point to central point of outer tile (in arcseconds)
 

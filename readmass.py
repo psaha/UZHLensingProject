@@ -4,20 +4,22 @@
 import numpy as np
 import matplotlib.pyplot as pl
 import scipy.optimize as opt
+import pickle
 
 """
 #open data file
 mname = 'ASW0007k4r/012771'
-mname = 'ASW0000h2m/007022'
-mname = 'ASW0000h2m/IHRULOMX6D'
-mname = 'ASW000102p/WM4H5RZXQZ_hires' #hi res makes a difference
+#mname = 'ASW0000h2m/007022'
+#mname = 'ASW0000h2m/IHRULOMX6D'
+#mname = 'ASW000102p/WM4H5RZXQZ_hires' #hi res makes a difference
 #mname = 'gribbles'
 fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 """
 
-from ellip import ensem, N, R, profile#, grid      #ellip is set up for lenses 102p and h2m/IHRU... (hires)
+from ellip import ensem, N, R, profile, maximgpos #, grid      #ellip is set up for lenses 102p and h2m/IHRU... (hires)
 
+#from power import ensem, N, R, profile                           #an experiment with a new model...
 
 #defining the data as describing points on a 2D surface
 #N = ensem[0].shape[0]                      #N and R now defined within ellip
@@ -59,7 +61,9 @@ def Xprof(params):
     return a*(h+c*X*X+Y*Y+b*X*Y)**-n
 
 #from ellip import profile, grid             #Import isothermal ellipsoid functional form
-
+#profile=Xprof
+mask = (1-np.sign(X*X+Y*Y-maximgpos*maximgpos))/2
+mask = np.reshape(mask,(N**2))
 
 def residuals(params):
     f = profile(params)                         #f = k(param)
@@ -67,10 +71,10 @@ def residuals(params):
     f -= mean                                   #changed 'change' (which was an experiment) to 'mean'#f = f-change
     for m in range(1,6):
         f -= np.inner(f,vecs[:,-m])*vecs[:,-m]  #removing projections along principle axes
-    return f
+    return f #mask*f
 
 
-ini = [1.8,0.1,-0.2]                             #initial values for parameters
+ini = [1,1,1,1,1]                             #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]             #perform least squares fit on f
 
 
@@ -78,9 +82,10 @@ lsq = opt.leastsq(residuals,ini)[0]             #perform least squares fit on f
 param1 = lsq[0]
 param2 = lsq[1]
 param3 = lsq[2]
+param4 = lsq[3]
 #maybe user can input required no of sf?
 print 'Param1 (Einstein radius) = {0:.3e}, Param2 (Ellipticity) = {1:.3e}, Param3 (Position angle of ellipticity) = {2:.3e}'.format(param1,param2,param3) #prints values of optimised parameters
-
+#print 'phi = {0:.3e}, q = {1:.3e}, b = {2:.3e}, t = {3:.3e}'.format(param1,param2,param3,param4)
 
 #grav = grid(lsq)                                 #For plotting grav ptl
 #lev = np.linspace(np.amin(grav),np.amax(grav),21)
@@ -91,8 +96,8 @@ print 'Param1 (Einstein radius) = {0:.3e}, Param2 (Ellipticity) = {1:.3e}, Param
 F = profile(lsq)                                  #F = k(param) with optimised parameters
 ##F1d = np.reshape(F,N**2)
 ##pl.plot(F1d)
-lev = np.linspace(np.amin(F),np.amax(F),10)
-pl.contour(X,Y,F, levels=[0,1,2,3,4])             #plot graph of parameterised model
+lev = np.linspace(0,5,11)
+pl.contour(X,Y,F, levels=lev)             #plot graph of parameterised model
 """plot colour-filled contours"""
 #bar = pl.contourf(X,Y,F,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
@@ -118,8 +123,8 @@ for m in range(1,6):
     change += np.inner(F1d,vecs[:,-m])*vecs[:,-m] #adding projections (of the parameterised form along the eigenvectors) to the mean
 ##pl.plot(change)
 H = np.reshape(change,(N,N))
-lev = np.linspace(np.amin(H),np.amax(H),10)
-pl.contour(X,Y,H, levels=[0,1,2,3,4])            #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
+lev = np.linspace(0,5,11)
+pl.contour(X,Y,H, levels=lev)            #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 """plot colour-filled contours"""
 #bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
