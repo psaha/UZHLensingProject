@@ -2,7 +2,7 @@ import matplotlib as mpl
 import pylab as pl
 glass_basis('glass.basis.pixels', solver='rwalk')
 meta(author='some user', notes='using LensModellingTools')
-setup_log('log_WM4H5RZXQZ.txt')
+setup_log('log_IHRULOMX6D.txt')
 
 samplex_random_seed(0)
 samplex_acceptance(rate=0.25, tol=0.15)
@@ -31,12 +31,17 @@ hires(3,3)
 
 shear(0.1)
 
-A = -1.980, 1.056
-B = 1.135, -0.977
+A = -2.197, -0.525
+B = 1.653, -1.000
+C = 0.163, -2.193
+D = 0.210, 1.716
 source(1.000,
   A, 'min', 
-  B, 'sad', None)
+  B, 'min', None,
+  C, 'sad', None,
+  D, 'sad', None)
 
 model(200)
 
-savestate('WM4H5RZXQZ.state')
+savestate('IHRULOMX6D.state')
+
