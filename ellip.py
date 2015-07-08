@@ -3,6 +3,7 @@
 import numpy as np
 import pickle
 mname = 'ASW000102p/WM4H5RZXQZ_hires'
+#mname = 'ASW0000h2m/IHRULOMX6D'
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil)
 ensem = chutney['grids']
@@ -14,7 +15,7 @@ R = chutney['maprad']
 #maprad = radius from central point to central point of outer tile (in arcseconds)
 
 # See eqns (33-35) from Keeton astro-ph/0102341
-def poten_SIE(x,y,reinst,ell,ell_pa):                       #parametersied function for isothermal ellipsoid
+def poten_SIE(x,y,reinst,ell,ell_pa):                       #parameterised function for isothermal ellipsoid
     pa = (ell_pa+90)*np.pi/180
     q = np.sqrt((1-ell)/(1+ell))
     reinst *= np.sqrt((1+q*q)/(2*q*q))

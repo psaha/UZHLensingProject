@@ -9,17 +9,22 @@ import scipy.optimize as opt
 #open data file
 mname = 'ASW0007k4r/012771'
 mname = 'ASW0000h2m/007022'
-mname = 'ASW0000h2m/IHRULOMX6D'
-mname = 'ASW000102p/WM4H5RZXQZ'
+#mname = 'ASW0000h2m/IHRULOMX6D'
+#mname = 'ASW000102p/WM4H5RZXQZ_hires'
 #mname = 'gribbles'
 fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
+
+
+#from ellip import ensem, N, R              #data with correct units (but to what do the parameters relate in this case?)
+
 
 #defining the data as describing points on a 2D surface
 N = ensem[0].shape[0]
 R = (N-1)/2
 x = np.linspace(-R,R,N)
 X,Y = np.meshgrid(x,x)
+
 
 
 for m in range(len(ensem)):
@@ -44,7 +49,7 @@ vals,vecs = np.linalg.eigh(outsum)          #find eigenvecs/vals of MoI tensor
 
 
 def profile(params):
-    a,b,n,h,c=params[0],params[1],params[2],params[3],params[4]
+    a,b,c,h,n=params[0],params[1],params[2],params[3],params[4]
     #return a*(h+X*X+Y*Y+b*X*Y)**-n                #define test parameterised functional form k(param)
     return a*(h+c*X*X+Y*Y+b*X*Y)**-n
     #return a*(1+X*X+Y*Y)**-n
@@ -68,7 +73,7 @@ param3 = lsq[2]
 param4 = lsq[3]
 param5 = lsq[4]
 
-print 'param1 = {0:.3e}, param2 = {1:.3e}, param3 = {2:.3e}, param4 = {3:.3e}, param5 = {4:.3e}'.format(param1,param2,param3,param4,param5) #prints values of optimised parameters
+print 'param1(a) = {0:.3e}, param2(b) = {1:.3e}, param3(c) = {2:.3e}, param4(h) = {3:.3e}, param5(n) = {4:.3e}'.format(param1,param2,param3,param4,param5) #prints values of optimised parameters
 
 
 
@@ -78,7 +83,7 @@ pl.contour(X,Y,F, levels=[0,1,2,3,4])               #plot graph of parametrized 
 lev = np.linspace(np.amin(F),np.amax(F),10)
 #bar = pl.contourf(X,Y,F,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
-
+pl.title('Param')
 
 
 meanplot = np.reshape(mean,(N,N))                   #reshape mean as 2D array
@@ -87,6 +92,7 @@ meanplot = np.reshape(mean,(N,N))                   #reshape mean as 2D array
 lev = np.linspace(np.amin(meanplot),np.amax(meanplot),10)
 #bar = pl.contourf(X,Y,meanplot,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
+#pl.title('Param and Mean')
 
 
 F1d = np.reshape(F,N**2)
@@ -99,8 +105,7 @@ H = np.reshape(change,(N,N))
 lev = np.linspace(np.amin(H),np.amax(H),10)
 bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
 pl.colorbar(bar)
-
-
+pl.title('Param and Change')
 pl.axes().set_aspect('equal')
 pl.show()        
 
@@ -112,5 +117,7 @@ lev = np.linspace(-lmax,lmax,10)
 bar = pl.contourf(X,Y,K,levels=lev,cmap=pl.cm.seismic)
 pl.colorbar(bar)
 pl.axes().set_aspect('equal')
+pl.title('Difference between Param and Change')
 pl.show()        
+
 

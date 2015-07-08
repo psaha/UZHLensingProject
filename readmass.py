@@ -1,7 +1,6 @@
 """readmass"""
 
 #import libraries
-
 import numpy as np
 import matplotlib.pyplot as pl
 import scipy.optimize as opt
@@ -17,7 +16,7 @@ fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 """
 
-from ellip import ensem, N, R, profile      #ellip is set up for lens 102p (hires)
+from ellip import ensem, N, R, profile      #ellip is set up for lenses 102p and h2m/IHRU... (hires)
 
 
 #defining the data as describing points on a 2D surface
@@ -27,7 +26,7 @@ x = np.linspace(-R,R,N)
 X,Y = np.meshgrid(x,x)
 
 
-fudge = 0.4312                              #Problems...
+fudge = 0.4312                              #red shift fudge factor
 
 
 for m in range(len(ensem)):
@@ -71,7 +70,7 @@ def residuals(params):
     return f
 
 
-ini = [3,0.5,1]                             #initial values for parameters
+ini = [1.8,0.1,-0.2]                             #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]             #perform least squares fit on f
 
 
@@ -95,6 +94,7 @@ pl.contour(X,Y,F, levels=[0,1,2,3,4])             #plot graph of parameterised m
 lev = np.linspace(np.amin(F),np.amax(F),10)
 #bar = pl.contourf(X,Y,F,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
+pl.title('Param')
 #pl.show()
 
 
@@ -105,6 +105,7 @@ meanplot = np.reshape(mean,(N,N))
 lev = np.linspace(np.amin(meanplot),np.amax(meanplot),10)
 #bar = pl.contourf(X,Y,meanplot,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
+#pl.title('Param and Mean')
 #pl.show()
 
 
@@ -114,11 +115,12 @@ change = mean
 for m in range(1,6):
     change += np.inner(F1d,vecs[:,-m])*vecs[:,-m] #adding projections (of the parameterised form along the eigenvectors) to the mean
 H = np.reshape(change,(N,N))
-#pl.contour(X,Y,H, levels=[0,1,2,3,4])            #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
+pl.contour(X,Y,H, levels=[0,1,2,3,4])            #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 """plot colour-filled contours"""
 lev = np.linspace(np.amin(H),np.amax(H),10)
-bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
-pl.colorbar(bar)
+#bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
+#pl.colorbar(bar)
+pl.title('Param and Change')
 pl.show()
 
 
@@ -131,6 +133,7 @@ lev = np.linspace(-lmax,lmax,50)
 bar = pl.contourf(X,Y,K,levels=lev,cmap=pl.cm.seismic)
 pl.colorbar(bar)
 pl.axes().set_aspect('equal')
+pl.title('Difference between param and change')
 pl.show()        
 
 
