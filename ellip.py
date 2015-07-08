@@ -46,7 +46,7 @@ def profile(params):
     M = 0*F
     M[1:-1,1:-1] = F[2:,1:-1] + F[:-2,1:-1] + F[1:-1,2:] + F[1:-1,:-2] \
                  - 4*F[1:-1,1:-1]                           #taking the second difference of the gravitational potential
-    M = M*(pixrad/R)**2                                     #dividing by "delta(x)^2" to obtain grad^2 of potential i.e. mass distrib.
+    M = M*(pixrad/R)**2 / 2                                     #dividing by "delta(x)^2" to obtain grad^2 of potential i.e. mass distrib.
     K = np.ndarray(shape=(N,N))                             #undersampling again to go back to original grid size
     for i in range(N):
         for j in range(N):
