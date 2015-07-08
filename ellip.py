@@ -10,7 +10,8 @@ ensem = chutney['grids']
 pixrad = chutney['pixrad']
 N = 2*pixrad+1
 R = chutney['maprad']
-maximgpos = chutney['maximgpos']
+#maximgpos = chutney['maximgpos']
+
 #pixrad = radius in number of pixels
 #maprad = radius from central point to central point of outer tile (in arcseconds)
 

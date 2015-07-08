@@ -4,7 +4,7 @@
 import numpy as np
 import matplotlib.pyplot as pl
 import scipy.optimize as opt
-import pickle
+#import pickle
 
 """
 #open data file
@@ -17,7 +17,7 @@ fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 """
 
-from ellip import ensem, N, R, profile, maximgpos #, grid      #ellip is set up for lenses 102p and h2m/IHRU... (hires)
+from ellip import ensem, N, R, profile#, maximgpos #, grid      #ellip is set up for lenses 102p and h2m/IHRU... (hires)
 
 #from power import ensem, N, R, profile                           #an experiment with a new model...
 
@@ -62,8 +62,8 @@ def Xprof(params):
 
 #from ellip import profile, grid             #Import isothermal ellipsoid functional form
 #profile=Xprof
-mask = (1-np.sign(X*X+Y*Y-maximgpos*maximgpos))/2
-mask = np.reshape(mask,(N**2))
+#mask = (1-np.sign(X*X+Y*Y-maximgpos*maximgpos))/2
+#mask = np.reshape(mask,(N**2))
 
 def residuals(params):
     f = profile(params)                         #f = k(param)
@@ -74,7 +74,7 @@ def residuals(params):
     return f #mask*f
 
 
-ini = [1,1,1,1,1]                             #initial values for parameters
+ini = [1.8,0.1,-0.2]                             #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]             #perform least squares fit on f
 
 
@@ -82,7 +82,7 @@ lsq = opt.leastsq(residuals,ini)[0]             #perform least squares fit on f
 param1 = lsq[0]
 param2 = lsq[1]
 param3 = lsq[2]
-param4 = lsq[3]
+#param4 = lsq[3]
 #maybe user can input required no of sf?
 print 'Param1 (Einstein radius) = {0:.3e}, Param2 (Ellipticity) = {1:.3e}, Param3 (Position angle of ellipticity) = {2:.3e}'.format(param1,param2,param3) #prints values of optimised parameters
 #print 'phi = {0:.3e}, q = {1:.3e}, b = {2:.3e}, t = {3:.3e}'.format(param1,param2,param3,param4)
