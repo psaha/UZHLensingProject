@@ -44,3 +44,24 @@ def residuals(params):
 #pl.ylim(-20,20)
 #pl.grid(True)
 #pl.savefig() for graph
+
+
+"""Stuff from ellip for graph plotting"""
+#params = [10,0.5,45]
+#K = profile(params)
+
+#R = (N-1)/2
+#x = np.linspace(-R,R,N)
+#X,Y = np.meshgrid(x,x)
+
+# M = np.log(abs(M)+1e-12)
+#lev = np.linspace(np.amin(K),np.amax(K),21)
+#pl.contour(X,Y,K, levels=[0,1,2,3,4,5])
+#pl.axes().set_aspect('equal')
+#pl.show()        
+
+
+
+
+
+

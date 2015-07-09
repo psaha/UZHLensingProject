@@ -1,19 +1,23 @@
 """ellip"""
 
+"""This program imports the lens data and calculates the parameterised form of
+the mass distribution for an isothermal ellipsoid from the functional form of 
+the gravitational potential. It also defines N, R and maximgpos such that 
+parameters are given in the correct units. For use with mass_ellip or readmass"""
+
+
 import numpy as np
 import pickle
 mname = 'ASW000102p/WM4H5RZXQZ_hires'
-mname = 'ASW0000h2m/IHRULOMX6D'
+#mname = 'ASW0000h2m/IHRULOMX6D'
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil)
-ensem = chutney['grids']
-pixrad = chutney['pixrad']
+ensem = chutney['grids']                                    #ensem = the ensemble of 200 free-form mass distributions for the lens
+pixrad = chutney['pixrad']                                  #pixrad = radius in number of pixels
 N = 2*pixrad+1
-R = chutney['maprad']
-#maximgpos = chutney['maximgpos']
+R = chutney['maprad']                                       #maprad = radius from central point to central point of outer tile (in arcseconds)
+maximgpos = chutney['maximgpos']
 
-#pixrad = radius in number of pixels
-#maprad = radius from central point to central point of outer tile (in arcseconds)
 
 # See eqns (33-35) from Keeton astro-ph/0102341
 def poten_SIE(x,y,reinst,ell,ell_pa):                       #parameterised function for isothermal ellipsoid
@@ -28,6 +32,7 @@ def poten_SIE(x,y,reinst,ell,ell_pa):                       #parameterised funct
     phiy = A*np.arctanh(B*y)
     return x*phix + y*phiy
 
+
 # kappa(zl=0.5,zs=1) = 0.4312*kappa_inf(zl=0.5)             #red shift fudge factor
 
 
@@ -38,6 +43,8 @@ def grid(params):
     F = poten_SIE(X,Y,reinst,ell,ell_pa)
     return F
 
+
+#calculate parameterised functional form of mass distribution
 def profile(params):
     reinst,ell,ell_pa = params[0],params[1],params[2]       #parameters: Einstein radius, Ellipticity and Position angle of ellipticity
     S = 3
@@ -55,16 +62,3 @@ def profile(params):
             K[i,j] = np.sum(M[i*S:(i+1)*S,j*S:(j+1)*S])
     return K
     
-#params = [10,0.5,45]
-#K = profile(params)
-
-#R = (N-1)/2
-#x = np.linspace(-R,R,N)
-#X,Y = np.meshgrid(x,x)
-
-# M = np.log(abs(M)+1e-12)
-#lev = np.linspace(np.amin(K),np.amax(K),21)
-#pl.contour(X,Y,K, levels=[0,1,2,3,4,5])
-#pl.axes().set_aspect('equal')
-#pl.show()        
-
