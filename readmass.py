@@ -17,7 +17,7 @@ fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 """
 
-from ellip import ensem, N, R, profile#, maximgpos #, grid      #ellip is set up for lenses 102p and h2m/IHRU... (hires)
+from ellip import ensem, N, R, profile, maximgpos #, grid      #ellip is set up for lenses 102p and h2m/IHRU... (hires)
 
 #from power import ensem, N, R, profile                           #an experiment with a new model...
 
@@ -62,8 +62,8 @@ def Xprof(params):
 
 #from ellip import profile, grid             #Import isothermal ellipsoid functional form
 #profile=Xprof
-#mask = (1-np.sign(X*X+Y*Y-maximgpos*maximgpos))/2
-#mask = np.reshape(mask,(N**2))
+mask = (1-np.sign(X*X+Y*Y-maximgpos*maximgpos))/2
+mask = np.reshape(mask,(N**2))
 
 def residuals(params):
     f = profile(params)                         #f = k(param)
@@ -71,7 +71,7 @@ def residuals(params):
     f -= mean                                   #changed 'change' (which was an experiment) to 'mean'#f = f-change
     for m in range(1,6):
         f -= np.inner(f,vecs[:,-m])*vecs[:,-m]  #removing projections along principle axes
-    return f #mask*f
+    return mask*f
 
 
 ini = [1.8,0.1,-0.2]                             #initial values for parameters
@@ -124,16 +124,17 @@ for m in range(1,6):
 ##pl.plot(change)
 H = np.reshape(change,(N,N))
 lev = np.linspace(0,5,11)
-pl.contour(X,Y,H, levels=lev)            #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
+#pl.contour(X,Y,H, levels=lev)            #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 """plot colour-filled contours"""
-#bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
-#pl.colorbar(bar)
+bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
+pl.colorbar(bar)
 pl.title('Param and Change')
 pl.show()
 
 
 """Plot difference between parameterised model and 'change'"""
-K = F-H
+K = residuals(lsq)
+K = np.reshape(K,(N,N))
 #pl.contour(X,Y,K, levels=[0,1,2,3,4])            #plot graph of change - k(param)
 """plot colour-filled contours"""
 lmax = np.amax(abs(K))
