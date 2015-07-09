@@ -9,7 +9,7 @@ parameters are given in the correct units. For use with mass_ellip or readmass""
 import numpy as np
 import pickle
 mname = 'ASW000102p/WM4H5RZXQZ_hires'
-#mname = 'ASW0000h2m/IHRULOMX6D'
+mname = 'ASW0000h2m/IHRULOMX6D'
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil)
 ensem = chutney['grids']                                    #ensem = the ensemble of 200 free-form mass distributions for the lens

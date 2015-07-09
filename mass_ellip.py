@@ -58,7 +58,7 @@ vals,vecs = np.linalg.eigh(outsum)          #find eigenvecs/vals of MoI tensor
 
 """Define parameterised functional form and fit it to data"""
 
-#define masking function for...
+#define masking function for which selects only the data points that are inside the image of the lens
 mask = (1-np.sign(X*X+Y*Y-maximgpos*maximgpos))/2
 mask = np.reshape(mask,(N**2))
 

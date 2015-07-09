@@ -8,7 +8,7 @@ import scipy.optimize as opt
 
 #open data file
 mname = 'ASW0007k4r/012771'
-mname = 'ASW0000h2m/007022'
+#mname = 'ASW0000h2m/007022'
 #mname = 'ASW0000h2m/IHRULOMX6D'
 #mname = 'ASW000102p/WM4H5RZXQZ_hires'
 #mname = 'gribbles'
