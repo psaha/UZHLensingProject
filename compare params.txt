@@ -1,0 +1,15 @@
+			reinst		ellip		ell_pa
+ASW000102p (quasar)
+Original		1.83		0.13		82.0
+Output			1.923		0.1237		-8.222
+
+ASW0000h2m (quasar)
+Original		1.91		0.17		0.4
+Output			1.938		7.85e-11	91.69
+
+
+Output params from testfile (a*(h+c*X*X+Y*Y+b*X*Y)**-n)
+ASW0000h2m
+a = 4.629e+09, b = 1.590e-02, c = 1.476, h = 2.368e+02, n = 3.825
+ASW0007k4r
+a = 5.912e+08, b = -1.241e-01, c = 8.952e-01, h = 1.564e+02, n = 3.759
