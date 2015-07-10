@@ -1,6 +1,6 @@
 """mass_ellip"""
 
-"""This program is a tidy version of readmass specifically for modelling
+"""This program is a version of readmass specifically for modelling
 mass distributions of lenses using the isothermal ellipsoid parameterised 
 functional form found in ellip.py
 The lenses themselves are also imported here from ellip.py"""
@@ -16,7 +16,10 @@ import scipy.optimize as opt                #for the least squares fit
 
 
 #import lens data (ensemble of 200 free-form mass distributions), N, R, parameterised functional form, maximgpos
-from ellip import ensem, N, R, profile, maximgpos
+from ellip import ensem, N, R, profile, maximgpos, mname
+
+print 'Lens: '
+print mname
 
 
 #defining the data as describing N*N points on a 2D surface in the range -R to R
@@ -56,7 +59,9 @@ outsum = outsum/len(ensem)                  #scale MoI by tensor size of ensembl
 vals,vecs = np.linalg.eigh(outsum)          #find eigenvecs/vals of MoI tensor
 
 
+#************************************************************
 """Define parameterised functional form and fit it to data"""
+#************************************************************
 
 #define masking function for which selects only the data points that are inside the image of the lens
 mask = (1-np.sign(X*X+Y*Y-maximgpos*maximgpos))/2
@@ -85,7 +90,7 @@ lsq = opt.leastsq(residuals,ini)[0]             #perform parameter optimisation 
 param1 = lsq[0]
 param2 = lsq[1]
 param3 = lsq[2]
-print 'Param1 (Einstein radius) = {0:.3e}, Param2 (Ellipticity) = {1:.3e}, Param3 (Position angle of ellipticity) = {2:.3e}'.format(param1,param2,param3) #prints values of optimised parameters
+print 'Einstein radius = {0:.3e}, Ellipticity = {1:.3e}, Position angle of ellipticity = {2:.3e}'.format(param1,param2,param3) #prints values of optimised parameters
 
 
 """Plot parameterised model"""
@@ -95,15 +100,15 @@ pl.contour(X,Y,F, levels=lev)             #contour plot of parameterised model
 """plot colour-filled contours"""
 #bar = pl.contourf(X,Y,F,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
-pl.title('Param')
+#pl.title('Param')
 #pl.show()
 
 
 """Plot mean"""
-meanplot = np.reshape(mean,(N,N))
+#meanplot = np.reshape(mean,(N,N))
 #pl.contour(X,Y,meanplot, levels=[0,1,2,3,4])     #plot graph of mean
 """plot colour-filled contours"""
-lev = np.linspace(np.amin(meanplot),np.amax(meanplot),10)
+#lev = np.linspace(np.amin(meanplot),np.amax(meanplot),10)
 #bar = pl.contourf(X,Y,meanplot,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
 #pl.title('Param and Mean')
@@ -121,7 +126,7 @@ lev = np.linspace(0,5,11)
 """plot colour-filled contours"""
 bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
 pl.colorbar(bar)
-pl.title('Param and Change')
+pl.title('Parameterised form and "change"')
 pl.show()
 
 
@@ -135,7 +140,7 @@ lev = np.linspace(-lmax,lmax,50)
 bar = pl.contourf(X,Y,K,levels=lev,cmap=pl.cm.seismic)
 pl.colorbar(bar)
 pl.axes().set_aspect('equal')
-pl.title('Residuals')
+pl.title('Residuals: param - change')
 pl.show()        
 
 
