@@ -11,19 +11,71 @@ IHRULOMX6D again            1.94            0.00            92.8
 
 ASW0002b6m (quasar)  
 Original                    1.38            0.40            -79.7
-003250 (other)              0.05 (units)    0.59            222
+003250 (other)              0.81            0.59            222
 DTNM2FJRHY (me, pre hi-res) 1.44            0.25            11.4
 JQFENOSLM6 (me)             1.48            0.00            117.66
 
 ASW0001hpf (quasar)
 Original                    1.20            0.20            -35.0
 X2XNJLZM4T                  1.07            0.23            -21.74
-003150 (psaha)              0.05 (units)    0.35            3.77
+003150 (psaha)              0.81            0.35            3.77
+
+ASW00023pg (quasar)
+Original                    1.24            0.28            2.8
+ENCENHLARJ                  1.30            0.00            142.14
+
+ASW0000w54 (galaxy)
+Original                    1.27            0.29            -70.8
+
+
+ASW00054e9 (galaxy)
+Original                    1.24            0.36            -13.0
+
+
+ASW0000r8n (galaxy)
+Original                    1.32            0.22            35.6
+
+
+ASW00019rw (quasar)
+Original                    1.56            0.13            -49.8
+
+
+ASW0001a2m (quasar)
+Original                    1.75            0.14            4.6
+
+
+ASW0000e28 (galaxy)
+Original                    1.36            0.09            -7.9
+
+
+ASW0002jo0 (quasar)
+Original                    1.78            0.22            16.2
+
+
+ASW00004k0 (quasar)
+Original                    1.34            0.10            28.5
+
+
+ASW0001a8c (quasar)
+Original                    1.37            0.31            79.4
+
+
+ASW0000ar2 (quasar)
+Original                    1.27            0.12            80.9
+
+
+ASW0001gve (quasar)
+Original                    1.26            0.21            50.2
 
 
 
 
+Old lenses units conversion factor: multiply by 0.185*440/5
 
+
+
+
+**************
 
 Output params from testfile (a*(h+c*X*X+Y*Y+b*X*Y)**-n)
 ASW0000h2m
