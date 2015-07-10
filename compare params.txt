@@ -26,7 +26,7 @@ ENCENHLARJ                  1.30            0.00            142.14
 
 ASW0000w54 (galaxy)
 Original                    1.27            0.29            -70.8
-
+JE3O2HRDRJ                  1.28            0.51            58.29
 
 ASW00054e9 (galaxy)
 Original                    1.24            0.36            -13.0

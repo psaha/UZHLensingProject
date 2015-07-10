@@ -123,10 +123,10 @@ for m in range(1,6):
     change += np.inner(F1d,vecs[:,-m])*vecs[:,-m] #adding projections (of the parameterised form along the eigenvectors) to the mean
 H = np.reshape(change,(N,N))
 lev = np.linspace(0,5,11)
-pl.contour(X,Y,H, levels=lev)                   #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
+#pl.contour(X,Y,H, levels=lev)                   #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 """plot colour-filled contours"""
-#bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
-#pl.colorbar(bar)
+bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
+pl.colorbar(bar)
 pl.title('Parameterised form and "change"')
 pl.show()
 
