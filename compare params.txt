@@ -1,11 +1,21 @@
-			reinst		ellip		ell_pa
+			reinst	ellip		ell_pa
 ASW000102p (quasar)
 Original		1.83		0.13		82.0
-Output			1.923		0.1237		-8.222
+Output		1.92		0.124	-8.22
 
 ASW0000h2m (quasar)
 Original		1.91		0.17		0.4
-Output			1.938		7.85e-11	91.69
+Output		1.94		7.85e-11	91.7
+
+
+ASW0002b6m (quasar)  
+Original         1.38       0.40        -79.7
+003250           0.0511    0.592      222
+
+
+
+
+
 
 
 Output params from testfile (a*(h+c*X*X+Y*Y+b*X*Y)**-n)
