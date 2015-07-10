@@ -1,7 +1,7 @@
-ASW0002b6m (quasar)  1.38  0.40 -79.7
-ASW0001hpf (quasar)  1.20  0.20 -35.0
+ASW0002b6m (quasar)  1.38  0.40 -79.7  done
+ASW0001hpf (quasar)  1.20  0.20 -35.0  done
 ASW00023pg (quasar)  1.24  0.28   2.8
-ASW000102p (quasar)  1.83  0.13  82.0
+ASW000102p (quasar)  1.83  0.13  82.0  done
 ASW0000w54 (galaxy)  1.27  0.29 -70.8
 ASW00054e9 (galaxy)  1.24  0.36 -13.0
 ASW0000r8n (galaxy)  1.32  0.22  35.6
@@ -13,4 +13,4 @@ ASW00004k0 (quasar)  1.34  0.10  28.5
 ASW0001a8c (quasar)  1.37  0.31  79.4
 ASW0000ar2 (quasar)  1.27  0.12  80.9
 ASW0001gve (quasar)  1.26  0.21  50.2
-ASW0000h2m (quasar)  1.91  0.17   0.4
+ASW0000h2m (quasar)  1.91  0.17   0.4  done

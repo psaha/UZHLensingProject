@@ -1,17 +1,24 @@
-			reinst	ellip		ell_pa
+                            reinst          ellip           ell_pa
 ASW000102p (quasar)
-Original		1.83		0.13		82.0
-Output		1.92		0.124	-8.22
+Original                    1.83            0.13            82.0
+WM4H5RZXQZ_hires            1.92            0.12            -8.22
 
 ASW0000h2m (quasar)
-Original		1.91		0.17		0.4
-Output		1.94		7.85e-11	91.7
+Original                    1.91            0.17            0.4
+IHRULOMX6D                  1.94            7.85e-11        91.7
+IHRULOMX6D again            1.94            0.00            92.8
 
 
 ASW0002b6m (quasar)  
-Original         1.38       0.40        -79.7
-003250           0.0511    0.592      222
+Original                    1.38            0.40            -79.7
+003250 (other)              0.05 (units)    0.59            222
+DTNM2FJRHY (me, pre hi-res) 1.44            0.25            11.4
+JQFENOSLM6 (me)             1.48            0.00            117.66
 
+ASW0001hpf (quasar)
+Original                    1.20            0.20            -35.0
+X2XNJLZM4T                  1.07            0.23            -21.74
+003150 (psaha)              0.05 (units)    0.35            3.77
 
 
 

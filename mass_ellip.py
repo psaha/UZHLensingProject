@@ -90,8 +90,9 @@ lsq = opt.leastsq(residuals,ini)[0]             #perform parameter optimisation 
 param1 = lsq[0]
 param2 = lsq[1]
 param3 = lsq[2]
-print 'Einstein radius = {0:.3}, Ellipticity = {1:.3}, Position angle of ellipticity = {2:.3}'.format(param1,param2,param3) #prints values of optimised parameters
-
+#print 'Einstein radius = {0:.3}, Ellipticity = {1:.3}, Position angle of ellipticity = {2:.3}'.format(param1,param2,param3) #prints values of optimised parameters
+print 'Parameters'
+print '%.2f' %param1, '\t', '%.2f' %param2, '\t', '%.2f' %param3
 
 """Plot parameterised model"""
 F = profile(lsq)                                  #F = k(param) with optimised parameters
@@ -122,10 +123,10 @@ for m in range(1,6):
     change += np.inner(F1d,vecs[:,-m])*vecs[:,-m] #adding projections (of the parameterised form along the eigenvectors) to the mean
 H = np.reshape(change,(N,N))
 lev = np.linspace(0,5,11)
-pl.contour(X,Y,H, levels=lev)                   #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
+#pl.contour(X,Y,H, levels=lev)                   #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 """plot colour-filled contours"""
-#bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
-#pl.colorbar(bar)
+bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
+pl.colorbar(bar)
 pl.title('Parameterised form and "change"')
 pl.show()
 
