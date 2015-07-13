@@ -14,6 +14,7 @@ Original                    1.38            0.40            -79.7
 003250 (other)              0.81            0.59            222
 DTNM2FJRHY (me, pre hi-res) 1.44            0.25            11.4
 JQFENOSLM6 (me)             1.48            0.00            117.66
+HGPS5DSN25 (pixrad 18)      1.58            0.11            84.11
 
 ASW0001hpf (quasar)
 Original                    1.20            0.20            -35.0
