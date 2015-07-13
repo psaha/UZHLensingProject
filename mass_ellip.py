@@ -13,6 +13,7 @@ The lenses themselves are also imported here from ellip.py"""
 import numpy as np                          #for calculations 
 import matplotlib.pyplot as pl              #for plotting graphs
 import scipy.optimize as opt                #for the least squares fit
+from metrop import samp
 
 
 #import lens data (ensemble of 200 free-form mass distributions), N, R, parameterised functional form, maximgpos
@@ -81,6 +82,22 @@ def residuals(params):
 #set initial parameter values and perform linear regression fit of f to the ensemble
 ini = [1,0.1,0.1]                             #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]             #perform parameter optimisation on residuals
+
+def lnprob(params):
+    r = residuals(params)
+    return np.sum(-r*r)
+
+lo = [1,0,-90]
+hi = [5,0.5,90]
+S = 100
+lnp,pars = samp(lnprob,lo,hi,S)
+print lsq
+lsq = np.mean(pars,axis=0)
+sig = np.var(pars,axis=0)**.5
+print 'mcmc estimate and errors:'
+print lsq
+print sig
+
 
 #*********************************
 """Output parameters and graphs"""
