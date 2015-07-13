@@ -105,7 +105,7 @@ H = np.reshape(change,(N,N))
 lev = np.linspace(np.amin(H),np.amax(H),10)
 bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
 pl.colorbar(bar)
-pl.title('Param and Change')
+#pl.title('Param and Change')
 pl.axes().set_aspect('equal')
 pl.show()        
 
