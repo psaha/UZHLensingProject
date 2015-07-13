@@ -60,9 +60,9 @@ outsum = outsum/len(ensem)                  #scale MoI by tensor size of ensembl
 vals,vecs = np.linalg.eigh(outsum)          #find eigenvecs/vals of MoI tensor
 
 
-#************************************************************
-"""Define parameterised functional form and fit it to data"""
-#************************************************************
+#*****************************************
+"""Define parameterised functional form"""
+#*****************************************
 
 #define masking function for which selects only the data points that are inside the image of the lens
 mask = (1-np.sign(X*X+Y*Y-maximgpos*maximgpos))/2
@@ -78,10 +78,26 @@ def residuals(params):
         f -= np.inner(f,vecs[:,-m])*vecs[:,-m]  #removing projections along principle axes
     return mask*f                               
 
+#**************************
+"""Linear regression fit"""
+#**************************
 
 #set initial parameter values and perform linear regression fit of f to the ensemble
 ini = [1,0.1,0.1]                             #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]             #perform parameter optimisation on residuals
+
+
+#Print out parameters
+param1 = lsq[0]
+param2 = lsq[1]
+param3 = lsq[2]
+#print 'Einstein radius = {0:.3}, Ellipticity = {1:.3}, Position angle of ellipticity = {2:.3}'.format(param1,param2,param3) #prints values of optimised parameters
+print 'Least squares parameters'
+print '%.2f' %param1, '\t', '%.2f' %param2, '\t', '%.2f' %param3
+
+#*************
+"""MCMC fit"""
+#*************
 
 def lnprob(params):
     r = residuals(params)
@@ -98,18 +114,19 @@ print 'mcmc estimate and errors:'
 print lsq
 print sig
 
-
-#*********************************
-"""Output parameters and graphs"""
-#*********************************
-
 #Print out parameters
 param1 = lsq[0]
 param2 = lsq[1]
 param3 = lsq[2]
 #print 'Einstein radius = {0:.3}, Ellipticity = {1:.3}, Position angle of ellipticity = {2:.3}'.format(param1,param2,param3) #prints values of optimised parameters
-print 'Parameters'
+print 'MCMC parameters'
 print '%.2f' %param1, '\t', '%.2f' %param2, '\t', '%.2f' %param3
+
+
+#*********************************
+"""Output graphs"""
+#*********************************
+
 
 """Plot parameterised model"""
 F = profile(lsq)                                  #F = k(param) with optimised parameters

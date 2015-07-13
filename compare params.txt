@@ -1,37 +1,54 @@
                             reinst          ellip           ell_pa
 ASW000102p (quasar)
 Original                    1.83            0.13            82.0
-WM4H5RZXQZ_hires            1.92            0.12            -8.22
+WM4H5RZXQZ_hires (lsq)      1.92            0.12            -8.22
+WM4H5RZXQZ_hires (mcmc)     1.89            0.28            8.91
+Errors (mcmc)               0.10            0.03            13.9
 
 ASW0000h2m (quasar)
 Original                    1.91            0.17            0.4
-IHRULOMX6D                  1.94            7.85e-11        91.7
-IHRULOMX6D again            1.94            0.00            92.8
-
+IHRULOMX6D (lsq)            1.94            7.85e-11        91.7
+IHRULOMX6D again (lsq)      1.94            0.00            92.8
+IHRULOMX6D (mcmc)           1.93            0.23            18.62
+Errors (mcmc)               0.10            0.14            28.8
 
 ASW0002b6m (quasar)  
 Original                    1.38            0.40            -79.7
 003250 (other)              0.81            0.59            222
 DTNM2FJRHY (me, pre hi-res) 1.44            0.25            11.4
 JQFENOSLM6 (me)             1.48            0.00            117.66
-HGPS5DSN25 (pixrad 18)      1.58            0.11            84.11
+HGPS5DSN25 (pixrad 12 lsq)  1.58            0.11            84.11
+HGPS5DSN25 (pixrad 12 mcmc) 1.56            0.11            -23.01
+Errors (mcmc)               0.09            0.07            23.6
 
 ASW0001hpf (quasar)
 Original                    1.20            0.20            -35.0
 X2XNJLZM4T                  1.07            0.23            -21.74
 003150 (psaha)              0.81            0.35            3.77
+BLCAAUSI3K (pixrad 12 lsq)  1.08            0.25            8.32
+BLCAAUSI3K (pixrad 12 mcmc) 1.09 	          0.24            -1.62
+Errors (mcmc)               0.04            0.04            10.9
 
 ASW00023pg (quasar)
 Original                    1.24            0.28            2.8
 ENCENHLARJ                  1.30            0.00            142.14
+BL5HGOKDXT (pixrad 12 lsq)  1.18            0.00            -289.99
+BL5HGOKDXT (pixrad 12 mcmc) 1.17            0.16            49.83
+Errors (mcmc)               0.07            0.02            18.1
 
 ASW0000w54 (galaxy)
 Original                    1.27            0.29            -70.8
 JE3O2HRDRJ                  1.28            0.51            58.29
+OHLGINNP6B (pixrad 12 lsq)  1.27            0.28            50.68
+OHLGINNP6B (pixrad 12 mcmc) 1.25            0.21 	        11.50
+Errors (mcmc)               0.049           0.075           60.3
+
 
 ASW00054e9 (galaxy)
 Original                    1.24            0.36            -13.0
-
+K6364LIPQX (pixrad 12 lsq)  1.20            0.25            28.45
+K6364LIPQX (pixrad 12 mcmc) 1.21            0.17            53.88
+Errors (mcmc)               0.07            0.05            15.2
 
 ASW0000r8n (galaxy)
 Original                    1.32            0.22            35.6
