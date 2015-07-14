@@ -21,8 +21,10 @@ mname = 'ASW000102p/WM4H5RZXQZ_hires'
 #mname = 'ASW0002b6m/HGPS5DSN25'
 #mname = 'ASW0001hpf/BLCAAUSI3K'
 #mname = 'ASW00023pg/BL5HGOKDXT'
-#mname = 'ASW0000w54/OHLGINNP6B'
-mname = 'ASW00054e9/K6364LIPQX'
+mname = 'ASW0000w54/OHLGINNP6B'
+#mname = 'ASW00054e9/K6364LIPQX'
+#mname = 'ASW0001hpf/RSSPANLJCS'
+#mname = 'ASW0002b6m/QEO6G4TLRO'
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil)
 ensem = chutney['grids']                                    #ensem = the ensemble of 200 free-form mass distributions for the lens
@@ -63,7 +65,7 @@ def profile(params):
     S = 3
     r = R + 0.5*(1-1./S)*R/pixrad                           #oversampling, taking care about size of grid
     x = np.linspace(-r,r,N*S)
-    X,Y = np.meshgrid(x,x)
+    X,Y = np.meshgrid(x,-x)                                 #flip y axis
     F = poten_SIE(X,Y,reinst,ell,ell_pa)
     M = 0*F
     M[1:-1,1:-1] = F[2:,1:-1] + F[:-2,1:-1] + F[1:-1,2:] + F[1:-1,:-2] \

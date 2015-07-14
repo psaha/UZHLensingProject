@@ -20,6 +20,7 @@ JQFENOSLM6 (me)             1.48            0.00            117.66
 HGPS5DSN25 (pixrad 12 lsq)  1.58            0.11            84.11
 HGPS5DSN25 (pixrad 12 mcmc) 1.56            0.11            -23.01
 Errors (mcmc)               0.09            0.07            23.6
+QEO6G4TLRO (pixrad 12 lsq)  1.14            0.19            43.96
 
 ASW0001hpf (quasar)
 Original                    1.20            0.20            -35.0
@@ -28,6 +29,7 @@ X2XNJLZM4T                  1.07            0.23            -21.74
 BLCAAUSI3K (pixrad 12 lsq)  1.08            0.25            8.32
 BLCAAUSI3K (pixrad 12 mcmc) 1.09 	          0.24            -1.62
 Errors (mcmc)               0.04            0.04            10.9
+RSSPANLJCS (pixrad 8, lsq)  1.04            0.26            -49.13
 
 ASW00023pg (quasar)
 Original                    1.24            0.28            2.8
