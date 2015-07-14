@@ -24,7 +24,7 @@ import pickle
 #mname = 'ASW0000w54/OHLGINNP6B'
 #mname = 'ASW00054e9/K6364LIPQX'
 #mname = 'ASW0001hpf/RSSPANLJCS'
-#mname = 'ASW0002b6m/QEO6G4TLRO'
+mname = 'ASW0002b6m/QEO6G4TLRO'
 #mname = 'ASW0000r8n/X5D3BBZSIT'
 #mname = 'ASW00019rw/JN5VBMXBXA'
 #mname = 'ASW0000e28/KAOIMYEL7D'
@@ -33,7 +33,7 @@ import pickle
 #mname = 'ASW0001a8c/FNWW7WRTUH'
 #mname = 'ASW0000ar2/JW3HOCVDHD'
 #mname = 'ASW0001gve/ULOCQSOGZW'
-mname = 'ASW0002jo0/YE4PNVQTQN'
+#mname = 'ASW0002jo0/YE4PNVQTQN'
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil)
 ensem = chutney['grids']                                    #ensem = the ensemble of 200 free-form mass distributions for the lens
