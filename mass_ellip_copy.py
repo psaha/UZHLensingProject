@@ -73,7 +73,7 @@ mask = np.reshape(mask,(N**2))
 def residuals(params):
     f = profile(params)                         #f = k(param)
     f = np.reshape(f,(N**2))                    #reshape f into 1D array
-    clip = 2.5                                  #set clip value
+    clip = 2.5                                  #set clip value to keep inside the region of the ensemble models (between 2 and 3 because Gaussian fit)
     f -= mean                                   #take away the mean
     for m in range(1,11):
         i = np.inner(f,vecs[:,-m])              #clip the principal components
@@ -143,7 +143,7 @@ print '%.2f' %param1, '\t', '%.2f' %param2, '\t', '%.2f' %param3
 """Output graphs"""
 #*********************************
 
-trueparam = [1.27,0.29,-70.8]               #insert real parameters of simulated lens
+trueparam = [1.78,0.22,16.2]               #insert real parameters of simulated lens
 J = profile(trueparam)
 lev = np.linspace(0,5,11)
 # lev = 10**(np.linspace(-1,1,21))
@@ -151,7 +151,7 @@ pl.contour(X,Y,J, levels=lev)               #plot graph of parameterised model w
 meanplot = np.reshape(mean,(N,N))
 #pl.contour(X,Y,meanplot, levels=lev)       #plot graph of mean
 L = residuals(trueparam)
-M = J - np.reshape(L, (N,N))
+M = J - np.reshape(L, (N,N))                #best fit from prinicipal component subspace to J
 print 'residuals', np.sum(L*L)
 lev = np.linspace(0,5,11)
 pl.contour(X,Y,M, levels=lev)               #plot k(trueparam) - residuals(trueparam)

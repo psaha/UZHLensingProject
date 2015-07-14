@@ -8,7 +8,7 @@ parameters are given in the correct units. For use with mass_ellip or readmass""
 
 import numpy as np
 import pickle
-mname = 'ASW000102p/WM4H5RZXQZ_hires'
+#mname = 'ASW000102p/WM4H5RZXQZ_hires'
 #mname = 'ASW0000h2m/IHRULOMX6D'
 #mname = 'WM4H5RZXQZ'
 #mname = 'ASW0002b6m/003250'
@@ -21,10 +21,19 @@ mname = 'ASW000102p/WM4H5RZXQZ_hires'
 #mname = 'ASW0002b6m/HGPS5DSN25'
 #mname = 'ASW0001hpf/BLCAAUSI3K'
 #mname = 'ASW00023pg/BL5HGOKDXT'
-mname = 'ASW0000w54/OHLGINNP6B'
+#mname = 'ASW0000w54/OHLGINNP6B'
 #mname = 'ASW00054e9/K6364LIPQX'
 #mname = 'ASW0001hpf/RSSPANLJCS'
 #mname = 'ASW0002b6m/QEO6G4TLRO'
+#mname = 'ASW0000r8n/X5D3BBZSIT'
+#mname = 'ASW00019rw/JN5VBMXBXA'
+#mname = 'ASW0000e28/KAOIMYEL7D'
+#mname = 'ASW00004k0/3YOBKRDJMX'
+#mname = 'ASW0001a2m/XU65KDTCQP'
+#mname = 'ASW0001a8c/FNWW7WRTUH'
+#mname = 'ASW0000ar2/JW3HOCVDHD'
+#mname = 'ASW0001gve/ULOCQSOGZW'
+mname = 'ASW0002jo0/YE4PNVQTQN'
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil)
 ensem = chutney['grids']                                    #ensem = the ensemble of 200 free-form mass distributions for the lens
