@@ -8,6 +8,7 @@ parameters are given in the correct units. For use with mass_ellip or readmass""
 
 import numpy as np
 import pickle
+#Sims
 #mname = 'ASW000102p/WM4H5RZXQZ_hires'
 #mname = 'ASW0000h2m/IHRULOMX6D'
 #mname = 'WM4H5RZXQZ'
@@ -24,7 +25,7 @@ import pickle
 #mname = 'ASW0000w54/OHLGINNP6B'
 #mname = 'ASW00054e9/K6364LIPQX'
 #mname = 'ASW0001hpf/RSSPANLJCS'
-mname = 'ASW0002b6m/QEO6G4TLRO'
+#mname = 'ASW0002b6m/QEO6G4TLRO'
 #mname = 'ASW0000r8n/X5D3BBZSIT'
 #mname = 'ASW00019rw/JN5VBMXBXA'
 #mname = 'ASW0000e28/KAOIMYEL7D'
@@ -34,6 +35,26 @@ mname = 'ASW0002b6m/QEO6G4TLRO'
 #mname = 'ASW0000ar2/JW3HOCVDHD'
 #mname = 'ASW0001gve/ULOCQSOGZW'
 #mname = 'ASW0002jo0/YE4PNVQTQN'
+
+#Lens candidates
+mname = 'ASW0002asp/5EKMWWVJHL'
+#mname = 'ASW0002qtn/3TUJKHGED4'
+#mname = 'ASW00024id/EL3RTBLAWB'
+#mname = 'ASW0004nan/QUOGDU2NN6'
+#mname = 'ASW0000g95/A6UPEGOHT5'
+#mname = 'ASW00008a0/ZQTCPBN3ZE'
+#mname = 'ASW0007t5y/VDDLM6H2JN'
+#mname = 'ASW00096rm/PQZR2WYE7X'
+#mname = 'ASW0002bmc/VQYCYNONVW'
+#mname = 'ASW0007xrs/JHC3J2HYV7'
+#mname = 'ASW0008qsm/TOFS7JNGEK'
+#mname = 'ASW0001ld7/OS3CYAKLRT'
+mname = 'ASW0005ma2/ANLNZDLGFF'
+#mname = 'ASW0006jh5/5URN3BQFSV'
+#mname = 'ASW00070vl/M36RZR4OC4'
+#mname = 'ASW0007sez/SI4ELBAKL2'
+#mname = 'ASW00086xq/BYQATMOXCM'
+
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil)
 ensem = chutney['grids']                                    #ensem = the ensemble of 200 free-form mass distributions for the lens

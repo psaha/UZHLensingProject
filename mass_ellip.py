@@ -98,7 +98,7 @@ print '%.2f' %param1, '\t', '%.2f' %param2, '\t', '%.2f' %param3
 #*************
 """MCMC fit"""
 #*************
-
+"""
 def lnprob(params):
     r = residuals(params)
     return np.sum(-r*r)
@@ -122,7 +122,7 @@ param3 = lsq[2]
 print 'MCMC parameters'
 print '%.2f' %param1, '\t', '%.2f' %param2, '\t', '%.2f' %param3
 
-
+"""
 #*********************************
 """Output graphs"""
 #*********************************
