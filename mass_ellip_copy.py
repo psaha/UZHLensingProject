@@ -143,7 +143,7 @@ print '%.2f' %param1, '\t', '%.2f' %param2, '\t', '%.2f' %param3
 #*********************************
 """Output graphs"""
 #*********************************
-
+"""
 trueparam = [1.38,0.40,-79.7]               #insert real parameters of simulated lens
 J = profile(trueparam)
 lev = np.linspace(0,5,11)
@@ -158,7 +158,7 @@ lev = np.linspace(0,5,31)
 pl.contour(X,Y,M, levels=lev)               #plot k(trueparam) - residuals(trueparam)
 pl.axes().set_aspect('equal')
 pl.show()
-
+"""
 F = profile(lsq)                            #F = k(param) with optimised parameters
 lev = np.linspace(0,5,11)
 # lev = 10**(np.linspace(-1,1,21))
@@ -169,6 +169,7 @@ print 'residuals', np.sum(L*L)              #compare to trueparam value above
 lev = np.linspace(0,5,11)
 pl.contour(X,Y,M, levels=lev)               #plot k(param) - residuals(param) for optimised params
 pl.axes().set_aspect('equal')
+pl.title('Param model = k(param) with best fit to param model = k(param) - residuals')
 pl.show()
 
 
@@ -203,12 +204,12 @@ for m in range(1,6):
 H = np.reshape(change,(N,N))
 lev = np.linspace(0,5,11)
 pl.axes().set_aspect('equal')
-#pl.contour(X,Y,H, levels=lev)                   #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
+pl.contour(X,Y,H, levels=lev)                   #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 """plot colour-filled contours"""
-bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
-pl.colorbar(bar)
-pl.title('Parameterised form and "change"')
-#pl.show()
+#bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
+#pl.colorbar(bar)
+pl.title('Parametric model = k(param) and points on inertia tensor closest to it = mean + projections along principal components')
+pl.show()
 
 
 """Plot residuals function with optimised parameters, i.e. the difference between parameterised model and 'change'"""
@@ -221,7 +222,7 @@ lev = np.linspace(-lmax,lmax,50)
 bar = pl.contourf(X,Y,K,levels=lev,cmap=pl.cm.seismic)
 pl.colorbar(bar)
 pl.axes().set_aspect('equal')
-pl.title('Residuals: param - change')
-#pl.show()        
+pl.title('Residuals: k(param) - mean - projections along principal components')
+pl.show()        
 
 

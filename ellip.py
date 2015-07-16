@@ -37,23 +37,31 @@ import pickle
 #mname = 'ASW0002jo0/YE4PNVQTQN'
 
 #Lens candidates
-mname = 'ASW0002asp/5EKMWWVJHL'
+#mname = 'ASW0002asp/5EKMWWVJHL'
 #mname = 'ASW0002qtn/3TUJKHGED4'
 #mname = 'ASW00024id/EL3RTBLAWB'
+
+
 #mname = 'ASW0004nan/QUOGDU2NN6'
 #mname = 'ASW0000g95/A6UPEGOHT5'
 #mname = 'ASW00008a0/ZQTCPBN3ZE'
 #mname = 'ASW0007t5y/VDDLM6H2JN'
 #mname = 'ASW00096rm/PQZR2WYE7X'
 #mname = 'ASW0002bmc/VQYCYNONVW'
+
 #mname = 'ASW0007xrs/JHC3J2HYV7'
+
 #mname = 'ASW0008qsm/TOFS7JNGEK'
+
 #mname = 'ASW0001ld7/OS3CYAKLRT'
-mname = 'ASW0005ma2/ANLNZDLGFF'
+
+
+#mname = 'ASW0005ma2/ANLNZDLGFF'
 #mname = 'ASW0006jh5/5URN3BQFSV'
 #mname = 'ASW00070vl/M36RZR4OC4'
 #mname = 'ASW0007sez/SI4ELBAKL2'
-#mname = 'ASW00086xq/BYQATMOXCM'
+
+mname = 'ASW00086xq/BYQATMOXCM'
 
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil)

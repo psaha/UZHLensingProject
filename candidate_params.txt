@@ -1,0 +1,28 @@
+Candidate lens parameters
+
+Lens                    reinst          ellip           ellip_pa
+ASW0002asp/5EKMWWVJHL   1.12            0.00            2.85 (bad fit)
+ASW0002qtn/3TUJKHGED4   0.67            0.26            -36.81
+ASW00024id/EL3RTBLAWB   2.44            0.33            214.34 (good fit except in centre)
+
+
+ASW0004nan/QUOGDU2NN6   0.96            0.14            -59.25    
+ASW0000g95/A6UPEGOHT5   0.91            0.28            134.86
+ASW00008a0/ZQTCPBN3ZE   1.46            0.26            0.39 (very strange fit)
+ASW0007t5y/VDDLM6H2JN   1.01            0.31            -27.40 (good fit)
+ASW00096rm/PQZR2WYE7X   0.77            0.35            5.23
+ASW0002bmc/VQYCYNONVW   0.84            0.23            13.20
+
+ASW0007xrs/JHC3J2HYV7   1.04            0.33            66.63
+
+ASW0008qsm/TOFS7JNGEK   0.73            0.00            -5.91 (bad fit)
+
+ASW0001ld7/OS3CYAKLRT   0.61            0.53            36.88
+
+
+ASW0005ma2/ANLNZDLGFF   0.98            0.04            -34.40
+ASW0006jh5/5URN3BQFSV   0.73            0.03            -20.63
+ASW00070vl/M36RZR4OC4   2.07            0.08            -12.14
+ASW0007sez/SI4ELBAKL2   1.54            0.07            10.54
+
+ASW00086xq/BYQATMOXCM   1.24            0.15            55.65
