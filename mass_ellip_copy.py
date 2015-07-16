@@ -204,10 +204,10 @@ for m in range(1,6):
 H = np.reshape(change,(N,N))
 lev = np.linspace(0,5,11)
 pl.axes().set_aspect('equal')
-pl.contour(X,Y,H, levels=lev)                   #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
+#pl.contour(X,Y,H, levels=lev)                   #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 """plot colour-filled contours"""
-#bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
-#pl.colorbar(bar)
+bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
+pl.colorbar(bar)
 pl.title('Parametric model = k(param) and points on inertia tensor closest to it = mean + projections along principal components')
 pl.show()
 

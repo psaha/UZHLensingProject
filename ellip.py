@@ -39,22 +39,22 @@ import pickle
 #Lens candidates
 #mname = 'ASW0002asp/5EKMWWVJHL'
 #mname = 'ASW0002qtn/3TUJKHGED4'
-mname = 'ASW00024id/EL3RTBLAWB'
-
-
+#mname = 'ASW00024id/EL3RTBLAWB'
+mname = 'ASW0004dv8/EUTVAVV6XJ'
+#mname = 'ASW00047ae/TGTIIF7HCV'
 #mname = 'ASW0004nan/QUOGDU2NN6'
 #mname = 'ASW0000g95/A6UPEGOHT5'
-#mname = 'ASW00008a0/ZQTCPBN3ZE'
-mname = 'ASW0007t5y/VDDLM6H2JN'
+mname = 'ASW00008a0/ZQTCPBN3ZE'
+#mname = 'ASW0007t5y/VDDLM6H2JN'
 #mname = 'ASW00096rm/PQZR2WYE7X'
 #mname = 'ASW0002bmc/VQYCYNONVW'
-
+#mname = 'ASW0006e0o/S2LA5MRACS'
 #mname = 'ASW0007xrs/JHC3J2HYV7'
-
-mname = 'ASW0008qsm/TOFS7JNGEK'
-
+#mname = 'ASW0008swn/BCY2NOUSLK'
+#mname = 'ASW0008qsm/TOFS7JNGEK'
+#mname = 'ASW0008wmr/HJ2STCIBPO'
 #mname = 'ASW0001ld7/OS3CYAKLRT'
-
+#mname = 'ASW0002dx7/3NYJG67KRT'
 
 #mname = 'ASW0005ma2/ANLNZDLGFF'
 #mname = 'ASW0006jh5/5URN3BQFSV'
