@@ -33,7 +33,7 @@ for i in lines:
         yellip.append(float(param[1]))
         yangle.append(float(param[2]))
     if 'Originald' in i:                            #Separate out the data for doubles
-        origd = i[29:].split()
+        origd = i[28:].split()
         xeinstd.append(float(origd[0]))
         xellipd.append(float(origd[1]))
         xangled.append(float(origd[2]))
@@ -43,7 +43,6 @@ for i in lines:
         yellipd.append(float(paramd[1]))
         yangled.append(float(paramd[2]))
 
-    
 """Plot einstein radii"""
 pl.xlim(0,2)
 pl.ylim(0,2)
