@@ -3,7 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as pl
 
-fil = open('compare_params.txt')
+fil = open('comp_params_angle_conversion.txt')
 lines = fil.readlines()                             #Read data from file
 
 #Define x and y coordinates for einstein radius, ellipticity and angle of ellipticity
@@ -45,7 +45,6 @@ for i in lines:
 
     
 """Plot einstein radii"""
-#pl.plot(xeinst,yeinst,'.')
 pl.xlim(0,2)
 pl.ylim(0,2)
 pl.plot(xeinst,yeinst,'b.',label="not doubles")
@@ -58,6 +57,21 @@ pl.xlabel('Original parameters')
 pl.ylabel('Output parameters')
 pl.grid(True)
 pl.show()
+
+"""Plot ellipticity"""
+pl.xlim(0,0.5)
+pl.ylim(0,0.5)
+pl.plot(xellip,yellip,'b.',label="not doubles")
+pl.plot(xellipd,yellipd,'r.',label="doubles")
+#pl.legend()
+pl.plot([0, 0.5], [0, 0.5], 'b--')
+pl.axes().set_aspect('equal')
+pl.title('Ellipticity comparison')
+pl.xlabel('Original parameters')
+pl.ylabel('Output parameters')
+pl.grid(True)
+pl.show()
+
 
 """Plot ellipticity and angles"""
 for n in range(len(xellip)):
@@ -83,7 +97,7 @@ for n in range(len(xellipd)):
     pl.plot(x,y,'r')
 #pl.plot(xellip,yellip,'.')
 pl.xlim(-0.5,0.5)
-pl.ylim(-0.5,0.5)
+pl.ylim(0,0.5)
 pl.xlabel('ellip*cos(angle)')
 pl.ylabel('ellip*sin(angle)')
 pl.axes().set_aspect('equal')
