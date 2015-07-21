@@ -103,7 +103,7 @@ pl.axes().set_aspect('equal')
 pl.show()
 
 
-    
+"""
 xangle = np.array(xangle)
 yangle = np.array(yangle)
 diff = yangle - xangle
@@ -120,3 +120,4 @@ pl.grid(True)
 pl.axes().set_aspect('equal')
 pl.show()
 
+"""

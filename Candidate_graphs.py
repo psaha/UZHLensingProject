@@ -14,7 +14,7 @@ for i in lines:
         
 einst.sort()
 pl.hist(einst)
-pl.xlabel('Einstein radius/units')
+pl.xlabel('Einstein radius/arcseconds')
 pl.title('Distribution of Einstein radii')
 pl.xlim(0,4)
 pl.show()

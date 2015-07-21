@@ -8,7 +8,7 @@ import scipy.optimize as opt
 
 #open data file
 mname = 'ASW0007k4r/012771'
-#mname = 'ASW0000h2m/007022'
+mname = 'ASW0000h2m/007022'
 #mname = 'ASW0000h2m/IHRULOMX6D'
 #mname = 'ASW000102p/WM4H5RZXQZ_hires'
 #mname = 'gribbles'
@@ -62,8 +62,8 @@ def residuals(params):
         f -= np.inner(f,vecs[:,-m])*vecs[:,-m]         #removing projections along principle axes
     return f
 
-
-ini = [1,-1.3,3.7,1.6,1]                               #initial values for parameters
+#ini = [1,1]
+ini = [1,1,1,1,1]                               #initial values for parameters
 lsq = opt.leastsq(residuals,ini)[0]                    #perform least squares fit on f
 #print(lsq)
 
@@ -83,13 +83,13 @@ pl.contour(X,Y,F, levels=[0,1,2,3,4])               #plot graph of parametrized 
 lev = np.linspace(np.amin(F),np.amax(F),10)
 #bar = pl.contourf(X,Y,F,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
-pl.title('Param')
+#pl.title('Param')
 
 
 meanplot = np.reshape(mean,(N,N))                   #reshape mean as 2D array
-#pl.contour(X,Y,meanplot, levels=[0,1,2,3,4])       #plot graph of mean
+pl.contour(X,Y,meanplot, levels=[0,1,2,3,4])       #plot graph of mean
 """plot colour-filled contours"""
-lev = np.linspace(np.amin(meanplot),np.amax(meanplot),10)
+#lev = np.linspace(np.amin(meanplot),np.amax(meanplot),10)
 #bar = pl.contourf(X,Y,meanplot,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
 #pl.title('Param and Mean')
@@ -103,9 +103,10 @@ H = np.reshape(change,(N,N))
 #pl.contour(X,Y,H, levels=[0,1,2,3,4])              #plot graph of 'change' on same graph - these are the points on the MoI ellipse that are closest to the parameterised form
 """plot colour-filled contours"""
 lev = np.linspace(np.amin(H),np.amax(H),10)
-bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
-pl.colorbar(bar)
+#bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
+#pl.colorbar(bar)
 #pl.title('Param and Change')
+pl.title('Parameterised model a*(h+c*X*X+Y*Y+b*X*Y)**-n with mean')
 pl.axes().set_aspect('equal')
 pl.show()        
 

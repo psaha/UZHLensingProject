@@ -1,6 +1,6 @@
-"""mass_ellip_copy"""
+"""mass_final"""
 
-"""This program is a version of readmass specifically for modelling
+"""This program models
 mass distributions of lenses using the isothermal ellipsoid parameterised 
 functional form found in ellip.py
 The lenses themselves are also imported here from ellip.py"""
@@ -13,7 +13,6 @@ The lenses themselves are also imported here from ellip.py"""
 import numpy as np                          #for calculations 
 import matplotlib.pyplot as pl              #for plotting graphs
 import scipy.optimize as opt                #for the least squares fit
-from metrop import samp
 
 
 #import lens data (ensemble of 200 free-form mass distributions), N, R, parameterised functional form, maximgpos
@@ -93,14 +92,6 @@ def residuals(params):
 ini = [1,0.1,0.1]                             #initial values for parameters
 #perform parameter optimisation on residuals
 lsq = opt.leastsq(residuals,ini)[0]
-""" #method of finding error (abandoned)
-ans = opt.leastsq(residuals,ini,full_output=1)
-lsq = ans[0]
-r = residuals(lsq)
-cov = ans[1]#*np.sum(r*r)
-print cov
-print cov[0,0]**0.5, cov[1,1]**0.5, cov[2,2]**0.5
-"""
 
 #Print out parameters
 param1 = lsq[0]
@@ -110,41 +101,12 @@ param3 = lsq[2]
 print 'Least squares parameters'
 print '%.2f' %param1, '\t', '%.2f' %param2, '\t', '%.2f' %param3
 
-#*************
-"""MCMC fit""" #scrapped
-#*************
-"""
-def lnprob(params):
-    r = residuals(params)
-    return np.sum(-r*r/N)
 
-lo = [1,0,-90]
-hi = [5,0.5,90]
-S = 1000
-
-lnp,pars = samp(lnprob,lo,hi,S)
-print lsq
-lsq = np.mean(pars,axis=0)
-sig = np.var(pars,axis=0)**.5
-print 'mcmc estimate and errors:'
-print lsq
-print sig
-
-
-#Print out parameters
-param1 = lsq[0]
-param2 = lsq[1]
-param3 = lsq[2]
-#print 'Einstein radius = {0:.3}, Ellipticity = {1:.3}, Position angle of ellipticity = {2:.3}'.format(param1,param2,param3) #prints values of optimised parameters
-print 'MCMC parameters'
-print '%.2f' %param1, '\t', '%.2f' %param2, '\t', '%.2f' %param3
-
-"""
 #*********************************
 """Output graphs"""
 #*********************************
-"""
-trueparam = [1.38,0.40,-79.7]               #insert real parameters of simulated lens
+
+trueparam = [1.27,0.29,-70.8]               #insert real parameters of simulated lens
 J = profile(trueparam)
 lev = np.linspace(0,5,11)
 # lev = 10**(np.linspace(-1,1,21))
@@ -153,23 +115,24 @@ meanplot = np.reshape(mean,(N,N))
 #pl.contour(X,Y,meanplot, levels=lev)       #plot graph of mean
 L = residuals(trueparam)
 M = J - np.reshape(L, (N,N))                #best fit from prinicipal component subspace to J
-print 'residuals', np.sum(L*L)
-lev = np.linspace(0,5,31)
+#print 'residuals', np.sum(L*L)
+lev = np.linspace(0,5,11)
 pl.contour(X,Y,M, levels=lev)               #plot k(trueparam) - residuals(trueparam)
 pl.axes().set_aspect('equal')
+pl.title('The best fit from prinicipal component subspace to the true parameterised model')
 pl.show()
-"""
+
 F = profile(lsq)                            #F = k(param) with optimised parameters
 lev = np.linspace(0,5,11)
 # lev = 10**(np.linspace(-1,1,21))
 pl.contour(X,Y,F, levels=lev)
 L = residuals(lsq)
 M = F - np.reshape(L, (N,N))
-print 'residuals', np.sum(L*L)              #compare to trueparam value above
+#print 'residuals', np.sum(L*L)              #compare to trueparam value above
 lev = np.linspace(0,5,11)
 pl.contour(X,Y,M, levels=lev)               #plot k(param) - residuals(param) for optimised params
 pl.axes().set_aspect('equal')
-pl.title('Param model = k(param) with best fit to param model = k(param) - residuals')
+pl.title('Parameterised model with best fit to parameterised model')
 pl.show()
 
 
@@ -208,7 +171,7 @@ pl.axes().set_aspect('equal')
 """plot colour-filled contours"""
 bar = pl.contourf(X,Y,H,levels=lev,cmap=pl.cm.seismic)
 pl.colorbar(bar)
-pl.title('Parametric model = k(param) and points on inertia tensor closest to it = mean + projections along principal components')
+pl.title('Parametric model and points on inertia tensor closest to it')
 pl.show()
 
 
@@ -222,7 +185,7 @@ lev = np.linspace(-lmax,lmax,50)
 bar = pl.contourf(X,Y,K,levels=lev,cmap=pl.cm.seismic)
 pl.colorbar(bar)
 pl.axes().set_aspect('equal')
-pl.title('Residuals: k(param) - mean - projections along principal components')
+pl.title('Residuals - function to be minimised')
 pl.show()        
 
 
