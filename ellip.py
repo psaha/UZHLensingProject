@@ -61,7 +61,7 @@ mname = 'ASW0002b6m/003250'
 #mname = 'ASW00070vl/M36RZR4OC4'
 #mname = 'ASW0007sez/SI4ELBAKL2'
 #mname = 'ASW0009cjs/NJ5CC5YJAQ'
-#mname = 'ASW00086xq/BYQATMOXCM'
+mname = 'ASW00086xq/BYQATMOXCM'
 
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil)

@@ -34,7 +34,6 @@ N = 2*pixrad+1
 R = chutney['maprad']                                       #maprad = radius from central point to central point of outer tile (in arcseconds)
 maximgpos = chutney['maximgpos']
 
-
 # See eqns (33-35) from Keeton astro-ph/0102341
 def poten_SIE(x,y,reinst,ell,ell_pa):                       #parameterised function for isothermal ellipsoid
     pa = (ell_pa+90)*np.pi/180
