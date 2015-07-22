@@ -17,9 +17,9 @@ fil = open(mname+'.pkl')
 ensem = pickle.load(fil)
 """
 
-#from ellip import ensem, N, R, profile, maximgpos #, grid      #ellip is set up for lenses 102p and h2m/IHRU... (hires)
+from ellip import ensem, N, R, profile, maximgpos #, grid      #ellip is set up for lenses 102p and h2m/IHRU... (hires)
 
-from power import ensem, N, R, profile                           #an experiment with a new model...
+#from power import ensem, N, R, profile                           #an experiment with a new model...
 
 #defining the data as describing points on a 2D surface
 #N = ensem[0].shape[0]                      #N and R now defined within ellip
@@ -74,7 +74,8 @@ def residuals(params):
     return f #mask*f
 
 
-ini = [1.8,0.8,-0.1,0.3]                             #initial values for parameters
+#ini = [1.8,0.8,-0.1,0.3]                             #initial values for parameters
+ini = [1.8,0.8,-0.1]
 lsq = opt.leastsq(residuals,ini)[0]             #perform least squares fit on f
 
 
@@ -82,10 +83,10 @@ lsq = opt.leastsq(residuals,ini)[0]             #perform least squares fit on f
 param1 = lsq[0]
 param2 = lsq[1]
 param3 = lsq[2]
-param4 = lsq[3]
+#param4 = lsq[3]
 #maybe user can input required no of sf?
 #print 'Param1 (Einstein radius) = {0:.3e}, Param2 (Ellipticity) = {1:.3e}, Param3 (Position angle of ellipticity) = {2:.3e}'.format(param1,param2,param3) #prints values of optimised parameters
-print 'phi = {0:.3e}, q = {1:.3e}, b = {2:.3e}, t = {3:.3e}'.format(param1,param2,param3,param4)
+print 'phi = {0:.3e}, q = {1:.3e}, b = {2:.3e}'.format(param1,param2,param3)#, t = {3:.3e}'.format(param1,param2,param3,param4)
 
 #grav = grid(lsq)                                 #For plotting grav ptl
 #lev = np.linspace(np.amin(grav),np.amax(grav),21)

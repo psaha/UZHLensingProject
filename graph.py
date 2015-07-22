@@ -59,6 +59,8 @@ for i in lines:
         yellipod.append(float(oldd[1]))
         yangleod.append(float(oldd[2]))    
 
+print yeinsto
+
 """Plot einstein radii"""
 pl.xlim(0,2)
 pl.ylim(0,2)
