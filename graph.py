@@ -3,7 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as pl
 
-fil = open('comp_params_angle_conversion.txt')
+fil = open('Com_params_w_oldsims.txt')
 lines = fil.readlines()                             #Read data from file
 
 #Define x and y coordinates for einstein radius, ellipticity and angle of ellipticity
@@ -20,6 +20,12 @@ xangled = []
 yeinstd = []
 yellipd = []
 yangled = []
+yeinsto = []
+yellipo = []
+yangleo = []
+yeinstod = []
+yellipod = []
+yangleod = []
 
 for i in lines:
     if 'Original ' in i:
@@ -42,12 +48,27 @@ for i in lines:
         yeinstd.append(float(paramd[0]))
         yellipd.append(float(paramd[1]))
         yangled.append(float(paramd[2]))
+    if 'Old ' in i:
+        old = i[28:].split()
+        yeinsto.append(float(old[0]))
+        yellipo.append(float(old[1]))
+        yangleo.append(float(old[2]))      
+    if 'Oldd' in i:
+        oldd = i[29:].split()
+        yeinstod.append(float(oldd[0]))
+        yellipod.append(float(oldd[1]))
+        yangleod.append(float(oldd[2]))    
 
 """Plot einstein radii"""
 pl.xlim(0,2)
 pl.ylim(0,2)
 pl.plot(xeinst,yeinst,'b.',label="not doubles")
 pl.plot(xeinstd,yeinstd,'r.',label="doubles")
+
+#old
+pl.plot(xeinst,yeinsto,'g*')
+pl.plot(xeinstd,yeinstod,'y*')
+
 #pl.legend()
 pl.plot([0, 2], [0, 2], 'b--')
 pl.axes().set_aspect('equal')
@@ -57,11 +78,17 @@ pl.ylabel('Output parameters')
 pl.grid(True)
 pl.show()
 
+
 """Plot ellipticity"""
 pl.xlim(0,0.5)
 pl.ylim(0,0.5)
 pl.plot(xellip,yellip,'b.',label="not doubles")
 pl.plot(xellipd,yellipd,'r.',label="doubles")
+
+#old
+pl.plot(xellip,yellipo,'g*')
+pl.plot(xellipd,yellipod,'y*')
+
 #pl.legend()
 pl.plot([0, 0.5], [0, 0.5], 'b--')
 pl.axes().set_aspect('equal')
@@ -94,6 +121,30 @@ for n in range(len(xellipd)):
     pl.plot(x[:-1],y[:-1],'.')                      #True parameters
     #pl.plot(x[1],y[1],'*')
     pl.plot(x,y,'r')
+
+#old
+for n in range(len(xellip)):
+    R = xellip[n]
+    r = yellip[n]
+    T = (xangle[n]+90)*np.pi/180
+    t = (yangleo[n]+90)*np.pi/180
+    x = [R*np.cos(T),r*np.cos(t)]
+    y = [R*np.sin(T),r*np.sin(t)]
+    pl.plot(x[:-1],y[:-1],'.')                      #True parameters
+    #pl.plot(x[1],y[1],'*')
+    pl.plot(x,y,'g')
+#old doubles
+for n in range(len(xellipd)):
+    R = xellipd[n]
+    r = yellipd[n]
+    T = (xangled[n]+90)*np.pi/180
+    t = (yangleod[n]+90)*np.pi/180
+    x = [R*np.cos(T),r*np.cos(t)]
+    y = [R*np.sin(T),r*np.sin(t)]
+    pl.plot(x[:-1],y[:-1],'.')                      #True parameters
+    #pl.plot(x[1],y[1],'*')
+    pl.plot(x,y,'y')
+   
 #pl.plot(xellip,yellip,'.')
 pl.xlim(-0.5,0.5)
 pl.ylim(0,0.5)
