@@ -59,7 +59,7 @@ for i in lines:
         yellipod.append(float(oldd[1]))
         yangleod.append(float(oldd[2]))    
 
-print yeinsto
+
 
 """Plot einstein radii"""
 pl.xlim(0,2)
@@ -156,7 +156,7 @@ pl.axes().set_aspect('equal')
 pl.show()
 
 
-"""
+
 xangle = np.array(xangle)
 yangle = np.array(yangle)
 diff = yangle - xangle
