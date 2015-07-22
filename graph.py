@@ -64,12 +64,12 @@ print yeinsto
 """Plot einstein radii"""
 pl.xlim(0,2)
 pl.ylim(0,2)
-pl.plot(xeinst,yeinst,'b.',label="not doubles")
+pl.plot(xeinst,yeinst,'b.',label="quads")
 pl.plot(xeinstd,yeinstd,'r.',label="doubles")
 
 #old
-pl.plot(xeinst,yeinsto,'g*')
-pl.plot(xeinstd,yeinstod,'y*')
+pl.plot(xeinst,yeinsto,'g*',label="quads, others' models")
+pl.plot(xeinstd,yeinstod,'y*',label="doubles, others'models")
 
 #pl.legend()
 pl.plot([0, 2], [0, 2], 'b--')
@@ -174,3 +174,47 @@ pl.axes().set_aspect('equal')
 pl.show()
 
 """
+"""
+#histograms (no doubles)
+yeinst.sort()
+pl.hist(yeinst)
+pl.xlabel('Einstein radius/arcseconds')
+pl.title('Distribution of Einstein radii')
+pl.xlim(0.8,1.4)
+pl.show()
+
+yellip.sort()
+pl.hist(yellip)
+pl.xlabel('Ellipticity/units')
+pl.title('Distribution of Ellipticities')
+#pl.xlim(0,4)
+pl.show()
+
+yangle.sort()
+pl.hist(yangle)
+pl.xlabel('Angle of ellipticity/degrees')
+pl.title('Distribution of angles of ellipticity')
+pl.xlim(-90,90)
+pl.show()
+
+#histograms of old sims (no doubles)
+yeinsto.sort()
+pl.hist(yeinsto)
+pl.xlabel('Einstein radius/arcseconds')
+pl.title('Distribution of Einstein radii')
+#pl.xlim(0.8,1.4)
+pl.show()
+
+yellipo.sort()
+pl.hist(yellipo)
+pl.xlabel('Ellipticity/units')
+pl.title('Distribution of Ellipticities')
+#pl.xlim(0,4)
+pl.show()
+
+yangleo.sort()
+pl.hist(yangleo)
+pl.xlabel('Angle of ellipticity/degrees')
+pl.title('Distribution of angles of ellipticity')
+pl.xlim(-90,90)
+pl.show()
