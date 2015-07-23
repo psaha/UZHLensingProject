@@ -47,7 +47,7 @@ mname = 'ASW0002b6m/003250'
 #mname = 'ASW00008a0/ZQTCPBN3ZE'
 #mname = 'ASW0007t5y/VDDLM6H2JN'
 #mname = 'ASW00096rm/PQZR2WYE7X'
-#mname = 'ASW0002bmc/VQYCYNONVW'
+mname = 'ASW0002bmc/VQYCYNONVW'
 #mname = 'ASW0006e0o/S2LA5MRACS'
 #mname = 'ASW0007xrs/JHC3J2HYV7'
 #mname = 'ASW0008swn/BCY2NOUSLK'
@@ -61,7 +61,7 @@ mname = 'ASW0002b6m/003250'
 #mname = 'ASW00070vl/M36RZR4OC4'
 #mname = 'ASW0007sez/SI4ELBAKL2'
 #mname = 'ASW0009cjs/NJ5CC5YJAQ'
-mname = 'ASW00086xq/BYQATMOXCM'
+#mname = 'ASW00086xq/BYQATMOXCM'
 
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil)

@@ -82,5 +82,5 @@ for i in einstd:
     pl.plot(i,0,'r.')
 pl.ylim(-0.01,0.01)
 #ax.set_yticklabels([])
-#pl.show()
+pl.show()
 

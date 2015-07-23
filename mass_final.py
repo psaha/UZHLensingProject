@@ -119,7 +119,7 @@ M = J - np.reshape(L, (N,N))                #best fit from prinicipal component 
 lev = np.linspace(0,5,11)
 pl.contour(X,Y,M, levels=lev)               #plot k(trueparam) - residuals(trueparam)
 pl.axes().set_aspect('equal')
-pl.title('The best fit from prinicipal component subspace to the true parameterised model')
+pl.title('The best fit from principal component subspace to the true parameterised model')
 pl.show()
 
 F = profile(lsq)                            #F = k(param) with optimised parameters
@@ -155,8 +155,8 @@ pl.contour(X,Y,meanplot, levels=[0,1,2,3,4])     #plot graph of mean
 #lev = np.linspace(np.amin(meanplot),np.amax(meanplot),10)
 #bar = pl.contourf(X,Y,meanplot,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
-pl.title('Parameterised model and Mean')
-pl.show()
+#pl.title('Parameterised model and Mean')
+#pl.show()
 
 
 """Plot change: points on the moment of inertia ellipse that are closest to the parameterised functional form"""
