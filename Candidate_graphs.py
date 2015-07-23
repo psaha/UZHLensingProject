@@ -1,4 +1,5 @@
-import numpy as np
+"""Histograms of parameter data of candidate lenses found in candidate_params_angles.txt"""
+
 import matplotlib.pyplot as pl
 
 fil = open('candidate_params_angles.txt')
@@ -6,12 +7,10 @@ lines = fil.readlines()
 
 """Plot histograms"""
 einst = []
-
 for i in lines:
     if 'ASW' in i:
         results = i[23:].split()
         einst.append(float(results[0]))
-        
 einst.sort()
 pl.hist(einst)
 pl.xlabel('Einstein radius/arcseconds')
@@ -20,26 +19,21 @@ pl.xlim(0,4)
 pl.show()
 
 ellip = []
-
 for i in lines:
     if 'ASW' in i:
         results = i[23:].split()
-        ellip.append(float(results[1]))
-        
+        ellip.append(float(results[1]))        
 ellip.sort()
 pl.hist(ellip)
-pl.xlabel('Ellipticity/units')
+pl.xlabel('Ellipticity')
 pl.title('Distribution of Ellipticities')
-#pl.xlim(0,4)
 pl.show()
 
 angle = []
-
 for i in lines:
     if 'ASW' in i:
         results = i[23:].split()
-        angle.append(float(results[2]))
-        
+        angle.append(float(results[2]))       
 angle.sort()
 pl.hist(angle)
 pl.xlabel('Angle of ellipticity/degrees')
@@ -67,7 +61,7 @@ for i in lines:
         einst.append(float(results[0]))
         ellip.append(float(results[1]))
         angle.append(float(results[2]))
-
+        
 einstd.sort()
 ellipd.sort()
 angled.sort()
@@ -81,6 +75,5 @@ for i in einst:
 for i in einstd:
     pl.plot(i,0,'r.')
 pl.ylim(-0.01,0.01)
-#ax.set_yticklabels([])
 pl.show()
 
