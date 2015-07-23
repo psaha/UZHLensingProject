@@ -1,0 +1,85 @@
+compare_params_tidy.txt
+
+Only the data from Com_params_w_oldsims.txt needed for graph.py
+
+Not for use with graph.py - merely as a reference so that relevant data can be found easily
+
+ASW000102p (quasar)
+Original                    1.83            0.13            82.0
+WM4H5RZXQZ_hires (lsq)      1.92            0.12            -8.22
+Old 006939                  1.47            0.25            -40.25
+
+ASW0000h2m (quasar)
+Original                    1.91            0.17            0.4
+IHRULOMX6D again (lsq)      1.94            0.00            92.8
+Old 007020                  1.47            0.00          -13.33
+
+ASW0002b6m (quasar)  
+Original                    1.38            0.40            -79.7
+QEO6G4TLRO (pixrad 12 lsq)  1.14            0.19            43.96
+Old 006910                  0.98            0.00            -85.00
+
+ASW0001hpf (quasar)
+Original                    1.20            0.20            -35.0
+BLCAAUSI3K (pixrad 12 lsq)  1.08            0.25            8.32
+Old 006917                  0.81            0.36            -3.98
+
+ASW00023pg (quasar)
+Original                    1.24            0.28            2.8
+BL5HGOKDXT (pixrad 12 lsq)  1.18            0.00            -109.99
+Old 006930                  0.98            0.22            -31.72
+
+ASW0000w54 (galaxy)
+Original                    1.27            0.29            -70.8
+OHLGINNP6B (pixrad 12 lsq)  1.27            0.28            50.68
+Old 006943                  1.14            0.20            -10.40
+
+ASW00054e9 (galaxy)
+Original                    1.24            0.36            -13.0
+K6364LIPQX (pixrad 12 lsq)  1.20            0.25            28.45
+Old 006949                  1.14            0.29            -55.94
+
+ASW0000r8n (galaxy)
+Original                    1.32            0.22            35.6
+X5D3BBZSIT (pixrad 12 lsq)  1.03            0.22            -33.52
+Old 006963                  0.98            0.29            -50.44
+
+ASW00019rw (quasar)
+Original                    1.56            0.13            -49.8
+JN5VBMXBXA (pixrad 12 lsq)  1.05            0.44            -49.80
+Old 006967                  0.98            0.22            -61.25
+
+ASW0001a2m (quasar)
+Original                    1.75            0.14            4.6
+XU65KDTCQP (pixrad 12 lsq)  1.15            0.00            3.25
+Old 006971                  1.30            0.00            -18.58
+
+ASW0000e28 (galaxy) (double)
+Original                    1.36            0.09            -7.9
+KAOIMYEL7D (pixrad 12 lsq)  1.06            0.50            -33.67
+Old 006976                  1.30            0.16            -39.28
+
+ASW0002jo0 (quasar)
+Original                    1.78            0.22            16.2
+YE4PNVQTQN (pixrad 12 lsq)  1.33            0.00            -62.47
+Old 006982                  1.47            0.11            -18.62
+
+ASW00004k0 (quasar) (double)
+Original                    1.34            0.10            28.5
+3YOBKRDJMX (pixrad 12 lsq)  1.44            0.00            77.99
+Old 006989                  0.81            0.25            -28.51
+
+ASW0001a8c (quasar)
+Original                    1.37            0.31            79.4
+FNWW7WRTUH (pixrad 12 lsq)  1.02            0.39            -16.58
+Old 007000                  1.14            0.28            -26.27
+
+ASW0000ar2 (quasar) (double)
+Original                    1.27            0.12            80.9
+JW3HOCVDHD (pixrad 12 lsq)  0.98            0.12            18.70
+Old 007008                  0.98            0.20            -21.11
+
+ASW0001gve (quasar)
+Original                    1.26            0.21            50.2
+ULOCQSOGZW (pixrad 12 lsq)  0.90            0.49            57.17
+
