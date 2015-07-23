@@ -23,6 +23,8 @@ N.B. Old lenses units conversion factor for Einstein radius: multiply by 0.185*4
 All graphs for simulated lenses can be found in graph.py
 All graphs for candidate lenses can be found in Candidate_graphs.py
 
+A nice tidy list of the data plotted in graph.py can be found in compare_params_tidy.txt
+N.B. this isn't set up for plotting, just for looking at - the same data is plotted by graph.py from Com_params_w_oldsims.txt
 
 ************************
 Explanation of python code:
