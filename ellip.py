@@ -12,8 +12,8 @@ import pickle
 #mname = 'ASW000102p/WM4H5RZXQZ_hires'
 #mname = 'ASW0000h2m/IHRULOMX6D'
 #mname = 'WM4H5RZXQZ'
-mname = 'ASW0002b6m/003250'
-mname = 'ASW0002b6m/DTNM2FJRHY'
+#mname = 'ASW0002b6m/003250'
+#mname = 'ASW0002b6m/DTNM2FJRHY'
 #mname = 'ASW0002b6m/JQFENOSLM6'
 #mname = 'ASW0001hpf/X2XNJLZM4T'
 #mname = 'ASW0001hpf/003150'
@@ -47,7 +47,7 @@ mname = 'ASW0002b6m/DTNM2FJRHY'
 #mname = 'ASW00008a0/ZQTCPBN3ZE'
 #mname = 'ASW0007t5y/VDDLM6H2JN'
 #mname = 'ASW00096rm/PQZR2WYE7X'
-mname = 'ASW0002bmc/VQYCYNONVW'
+#mname = 'ASW0002bmc/VQYCYNONVW'
 #mname = 'ASW0006e0o/S2LA5MRACS'
 #mname = 'ASW0007xrs/JHC3J2HYV7'
 #mname = 'ASW0008swn/BCY2NOUSLK'
@@ -63,10 +63,15 @@ mname = 'ASW0002bmc/VQYCYNONVW'
 #mname = 'ASW0009cjs/NJ5CC5YJAQ'
 #mname = 'ASW00086xq/BYQATMOXCM'
 
+#for paper
+mname = 'for_paper/convincing/ASW0002asp/5EKMWWVJHL'
+mname = 'for_paper/convincing/ASW0007k4r/AJIBCHQ6EM'
+mname = 'for_paper/convincing/ASW0007xrs/JHC3J2HYV7'
+mname = 'for_paper/convincing/ASW0008qsm/TOFS7JNGEK'
+#mname = 'for_paper/convincing/ASW000619d/011489'
+
 fil = open(mname+'.pkl')
 chutney = pickle.load(fil) 
-#chutney = pickle.load( open(mname+'.pkl', 'rb'))
-#   favorite_color = pickle.load( open( "save.p", "rb" ) )
 
 ensem = chutney['grids']                                    #ensem = the ensemble of 200 free-form mass distributions for the lens
 pixrad = chutney['pixrad']                                  #pixrad = radius in number of pixels

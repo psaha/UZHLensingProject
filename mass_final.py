@@ -105,7 +105,7 @@ print ('%.2f' %param1, '%.2f' %param2, '%.2f' %param3)
 #*********************************
 """Output graphs"""
 #*********************************
-
+"""
 trueparam = [1.27,0.29,-70.8]               #insert real parameters of simulated lens
 J = profile(trueparam)
 lev = np.linspace(0,5,11)
@@ -114,13 +114,14 @@ pl.contour(X,Y,J, levels=lev)               #plot graph of parameterised model w
 meanplot = np.reshape(mean,(N,N))
 #pl.contour(X,Y,meanplot, levels=lev)       #plot graph of mean
 L = residuals(trueparam)
-M = J - np.reshape(L, (N,N))                #best fit from prinicipal component subspace to J
+M = J - np.reshape(L, (N,N))                #best fit from principal component subspace to J
 #print 'residuals', np.sum(L*L)
 lev = np.linspace(0,5,11)
 pl.contour(X,Y,M, levels=lev)               #plot k(trueparam) - residuals(trueparam)
 pl.axes().set_aspect('equal')
 pl.title('The best fit from principal component subspace to the true parameterised model')
 pl.show()
+"""
 
 F = profile(lsq)                            #F = k(param) with optimised parameters
 lev = np.linspace(0,5,11)
