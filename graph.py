@@ -7,20 +7,21 @@ fil = open('Com_params_w_oldsims.txt')
 lines = fil.readlines()                             #Read data from file
 
 #Define x and y coordinates for einstein radius, ellipticity and angle of ellipticity
-xeinst = []
+xeinst = []                                         #Quads
 xellip = []
 xangle = []
 yeinst = []
 yellip = []
 yangle = []
 
-xeinstd = []                                        #Separate out the data for doubles
+xeinstd = []                                        #Doubles
 xellipd = []
 xangled = []
 yeinstd = []
 yellipd = []
 yangled = []
-yeinsto = []
+
+yeinsto = []                                        #Define old spaghettilens sims data
 yellipo = []
 yangleo = []
 yeinstod = []
@@ -28,7 +29,7 @@ yellipod = []
 yangleod = []
 
 for i in lines:
-    if 'Original ' in i:
+    if 'Original ' in i:                            #Quads
         orig = i[28:].split()
         xeinst.append(float(orig[0]))
         xellip.append(float(orig[1]))
@@ -38,7 +39,7 @@ for i in lines:
         yeinst.append(float(param[0]))
         yellip.append(float(param[1]))
         yangle.append(float(param[2]))
-    if 'Originald' in i:                            #Separate out the data for doubles
+    if 'Originald' in i:                            #Doubles
         origd = i[28:].split()
         xeinstd.append(float(origd[0]))
         xellipd.append(float(origd[1]))
@@ -48,7 +49,7 @@ for i in lines:
         yeinstd.append(float(paramd[0]))
         yellipd.append(float(paramd[1]))
         yangled.append(float(paramd[2]))
-    if 'Old ' in i:
+    if 'Old ' in i:                                 #Separate out data for old spaghettilens sims - quads and doubles
         old = i[28:].split()
         yeinsto.append(float(old[0]))
         yellipo.append(float(old[1]))
@@ -61,16 +62,14 @@ for i in lines:
 
 
 
-"""Plot einstein radii"""
+"""Plot einstein radii - compare original parameters with output"""
 pl.xlim(0,2)
 pl.ylim(0,2)
 pl.plot(xeinst,yeinst,'b.',label="quads")
 pl.plot(xeinstd,yeinstd,'r.',label="doubles")
-
 #old
 pl.plot(xeinst,yeinsto,'g*',label="quads, others' models")
 pl.plot(xeinstd,yeinstod,'y*',label="doubles, others'models")
-
 #pl.legend()
 pl.plot([0, 2], [0, 2], 'b--')
 pl.axes().set_aspect('equal')
@@ -81,16 +80,14 @@ pl.grid(True)
 pl.show()
 
 
-"""Plot ellipticity"""
+"""Plot ellipticity - compare original parameters with output"""
 pl.xlim(0,0.5)
 pl.ylim(0,0.5)
 pl.plot(xellip,yellip,'b.',label="not doubles")
 pl.plot(xellipd,yellipd,'r.',label="doubles")
-
 #old
 pl.plot(xellip,yellipo,'g*')
 pl.plot(xellipd,yellipod,'y*')
-
 #pl.legend()
 pl.plot([0, 0.5], [0, 0.5], 'b--')
 pl.axes().set_aspect('equal')
@@ -123,7 +120,6 @@ for n in range(len(xellipd)):
     pl.plot(x[:-1],y[:-1],'.')                      #True parameters
     #pl.plot(x[1],y[1],'*')
     pl.plot(x,y,'r')
-
 #old
 for n in range(len(xellip)):
     R = xellip[n]
@@ -146,7 +142,6 @@ for n in range(len(xellipd)):
     pl.plot(x[:-1],y[:-1],'.')                      #True parameters
     #pl.plot(x[1],y[1],'*')
     pl.plot(x,y,'y')
-   
 #pl.plot(xellip,yellip,'.')
 pl.xlim(-0.5,0.5)
 pl.ylim(0,0.5)
@@ -155,8 +150,8 @@ pl.ylabel('ellip*sin(angle)')
 pl.axes().set_aspect('equal')
 pl.show()
 
-
-
+#Angle graph, not really useful
+"""
 xangle = np.array(xangle)
 yangle = np.array(yangle)
 diff = yangle - xangle
@@ -172,9 +167,8 @@ pl.plot(np.cos(diffd),np.sin(diffd),'r.')
 pl.grid(True)
 pl.axes().set_aspect('equal')
 pl.show()
+"""
 
-"""
-"""
 #histograms (no doubles)
 yeinst.sort()
 pl.hist(yeinst)

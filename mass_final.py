@@ -155,8 +155,8 @@ pl.contour(X,Y,meanplot, levels=[0,1,2,3,4])     #plot graph of mean
 #lev = np.linspace(np.amin(meanplot),np.amax(meanplot),10)
 #bar = pl.contourf(X,Y,meanplot,levels=lev,cmap=pl.cm.seismic)
 #pl.colorbar(bar)
-pl.title('Parameterised model and Mean')
-pl.show()
+#pl.title('Parameterised model and Mean')
+#pl.show()
 
 
 """Plot change: points on the moment of inertia ellipse that are closest to the parameterised functional form"""

@@ -1,0 +1,120 @@
+Important information explaining the code and data
+
+
+***********************
+Explanation of files containing models and parameters:
+
+Lens candidates.txt contains a list of all the lens candidates from the 
+Spacewarps paper in order of likelihood of being a lens (as ranked by volunteers).
+Models made are written down, ** means it was modelled by a volunteer (and not me), 
+?????????? means I couldn't load the lens, double means the lens is a double 
+and some have comments on the shape of the model. Any after the line: 
+"Glass files downloaded up to here**************" have not been downloaded from 
+the website yet.
+
+All the parameters collected for simulated lenses can be found in Com_params_w_oldsims.txt
+All parameters for candidate lenses can be found in candidate_params_angles.txt
+
+Note there is also candidate_params.txt, compare_params.txt and comp_params_angle_conversion.txt
+These all have either subsets of the data, or data with the angles not yet converted to lie in the range -90 - 90
+
+N.B. Old lenses units conversion factor for Einstein radius: multiply by 0.185*440/5
+
+All graphs for simulated lenses can be found in graph.py
+All graphs for candidate lenses can be found in Candidate_graphs.py
+
+A nice tidy list of the data plotted in graph.py can be found in compare_params_tidy.txt
+N.B. this isn't set up for plotting, just for looking at - the same data is plotted by graph.py from Com_params_w_oldsims.txt
+
+************************
+Explanation of python code:
+
+The most important files are mass_final.py and ellip.py
+The lens goes into ellip.py and mass_final.py does the fitting and prints the parameters and some graphs
+It should all be commented sufficiently to make sense.
+
+Other useful files are:
+ellip_spacewarps.py (ellip.py but for the old simulation models)
+testfile.py (fits a very good ellipse model but parameters aren't useful)
+metrop.py (for the Markov Chain Monte Carlo method)
+mass_ellip_copy.py (probably contains most information on abandoned methods eg. MCMC which has been tidied up from mass_final)
+readmass.py (the original code: contains rubble of abandoned methods if they can't be found elsewhere)
+
+Other files are either previous versions of ellip.py or mass_final.py, 
+failed experiments (see power.py and chisq.py) or coding rubble that's probably 
+no longer useful
+
+
+************************
+List of lenses which may be used with code:
+    
+Simulated lens models made by volunteers using old SpaghettiLens (currently used in ellip_spacewarps.py)
+mname = 'old_sims/006910' #ASW0002b6m
+mname = 'old_sims/006939' #ASW000102p
+mname = 'old_sims/006963' #ASW0000r8n
+mname = 'old_sims/006976' #ASW0000e28
+mname = 'old_sims/007000' #ASW0001a8c
+mname = 'old_sims/006917' #ASW0001hpf
+mname = 'old_sims/006943' #ASW0000w54
+mname = 'old_sims/006967' #ASW00019rw
+mname = 'old_sims/006982' #ASW0002jo0
+mname = 'old_sims/007008' #ASW0000ar2
+mname = 'old_sims/006930' #ASW00023pg
+mname = 'old_sims/006949' #ASW00054e9
+mname = 'old_sims/006971' #ASW0001a2m
+mname = 'old_sims/006989' #ASW00004k0
+mname = 'old_sims/007020' #ASW0000h2m
+
+Simulated lens models made by me using new SpaghettiLens (used in ellip.py)
+mname = 'ASW000102p/WM4H5RZXQZ_hires'
+mname = 'ASW0000h2m/IHRULOMX6D'
+mname = 'WM4H5RZXQZ'
+mname = 'ASW0002b6m/003250'
+mname = 'ASW0002b6m/DTNM2FJRHY'
+mname = 'ASW0002b6m/JQFENOSLM6'
+mname = 'ASW0001hpf/X2XNJLZM4T'
+mname = 'ASW0001hpf/003150'
+mname = 'ASW0000w54/JE3O2HRDRJ'
+mname = 'ASW00023pg/ENCENHLARJ'
+mname = 'ASW0002b6m/HGPS5DSN25'
+mname = 'ASW0001hpf/BLCAAUSI3K'
+mname = 'ASW00023pg/BL5HGOKDXT'
+mname = 'ASW0000w54/OHLGINNP6B'
+mname = 'ASW00054e9/K6364LIPQX'
+mname = 'ASW0001hpf/RSSPANLJCS'
+mname = 'ASW0002b6m/QEO6G4TLRO'
+mname = 'ASW0000r8n/X5D3BBZSIT'
+mname = 'ASW00019rw/JN5VBMXBXA'
+mname = 'ASW0000e28/KAOIMYEL7D'
+mname = 'ASW00004k0/3YOBKRDJMX'
+mname = 'ASW0001a2m/XU65KDTCQP'
+mname = 'ASW0001a8c/FNWW7WRTUH'
+mname = 'ASW0000ar2/JW3HOCVDHD'
+mname = 'ASW0001gve/ULOCQSOGZW'
+mname = 'ASW0002jo0/YE4PNVQTQN'
+
+Models of lens candidates (made by me unless marked with an asterisk)
+mname = 'ASW0002asp/5EKMWWVJHL'
+mname = 'ASW0002qtn/3TUJKHGED4'
+mname = 'ASW00024id/EL3RTBLAWB'
+mname = 'ASW0004dv8/EUTVAVV6XJ'
+mname = 'ASW00047ae/TGTIIF7HCV'
+mname = 'ASW0004nan/QUOGDU2NN6'
+mname = 'ASW0000g95/A6UPEGOHT5'
+mname = 'ASW00008a0/ZQTCPBN3ZE'
+mname = 'ASW0007t5y/VDDLM6H2JN'
+mname = 'ASW00096rm/PQZR2WYE7X'
+mname = 'ASW0002bmc/VQYCYNONVW'
+mname = 'ASW0006e0o/S2LA5MRACS'
+mname = 'ASW0007xrs/JHC3J2HYV7'
+mname = 'ASW0008swn/BCY2NOUSLK'
+mname = 'ASW0008qsm/TOFS7JNGEK'
+mname = 'ASW0008wmr/HJ2STCIBPO'
+mname = 'ASW0001ld7/OS3CYAKLRT'
+mname = 'ASW0002dx7/3NYJG67KRT'
+mname = 'ASW0005ma2/ANLNZDLGFF'
+mname = 'ASW0006jh5/5URN3BQFSV'
+mname = 'ASW00070vl/M36RZR4OC4'
+mname = 'ASW0007sez/SI4ELBAKL2'
+mname = 'ASW0009cjs/NJ5CC5YJAQ'
+mname = 'ASW00086xq/BYQATMOXCM'
