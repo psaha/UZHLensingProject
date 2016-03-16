@@ -13,7 +13,7 @@ import pickle
 #mname = 'ASW0000h2m/IHRULOMX6D'
 #mname = 'WM4H5RZXQZ'
 mname = 'ASW0002b6m/003250'
-#mname = 'ASW0002b6m/DTNM2FJRHY'
+mname = 'ASW0002b6m/DTNM2FJRHY'
 #mname = 'ASW0002b6m/JQFENOSLM6'
 #mname = 'ASW0001hpf/X2XNJLZM4T'
 #mname = 'ASW0001hpf/003150'
@@ -61,10 +61,13 @@ mname = 'ASW0002b6m/003250'
 #mname = 'ASW00070vl/M36RZR4OC4'
 #mname = 'ASW0007sez/SI4ELBAKL2'
 #mname = 'ASW0009cjs/NJ5CC5YJAQ'
-mname = 'ASW00086xq/BYQATMOXCM'
+#mname = 'ASW00086xq/BYQATMOXCM'
 
 fil = open(mname+'.pkl')
-chutney = pickle.load(fil)
+chutney = pickle.load(fil) 
+#chutney = pickle.load( open(mname+'.pkl', 'rb'))
+#   favorite_color = pickle.load( open( "save.p", "rb" ) )
+
 ensem = chutney['grids']                                    #ensem = the ensemble of 200 free-form mass distributions for the lens
 pixrad = chutney['pixrad']                                  #pixrad = radius in number of pixels
 N = 2*pixrad+1

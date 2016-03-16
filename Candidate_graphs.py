@@ -9,7 +9,7 @@ einst = []
 
 for i in lines:
     if 'ASW' in i:
-        results = i[23:].split()
+        results = i[24:].split()
         einst.append(float(results[0]))
         
 einst.sort()
@@ -23,12 +23,12 @@ ellip = []
 
 for i in lines:
     if 'ASW' in i:
-        results = i[23:].split()
+        results = i[24:].split()
         ellip.append(float(results[1]))
         
 ellip.sort()
 pl.hist(ellip)
-pl.xlabel('Ellipticity/units')
+pl.xlabel('Ellipticity')
 pl.title('Distribution of Ellipticities')
 #pl.xlim(0,4)
 pl.show()
@@ -37,7 +37,7 @@ angle = []
 
 for i in lines:
     if 'ASW' in i:
-        results = i[23:].split()
+        results = i[24:].split()
         angle.append(float(results[2]))
         
 angle.sort()

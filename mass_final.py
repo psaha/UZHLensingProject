@@ -18,8 +18,8 @@ import scipy.optimize as opt                #for the least squares fit
 #import lens data (ensemble of 200 free-form mass distributions), N, R, parameterised functional form, maximgpos
 from ellip import ensem, N, R, profile, maximgpos, mname
 
-print 'Lens: '
-print mname
+#print 'Lens: '
+print(mname)
 
 
 #defining the data as describing N*N points on a 2D surface in the range -R to R
@@ -98,8 +98,8 @@ param1 = lsq[0]
 param2 = lsq[1]
 param3 = lsq[2]
 #print 'Einstein radius = {0:.3}, Ellipticity = {1:.3}, Position angle of ellipticity = {2:.3}'.format(param1,param2,param3) #prints values of optimised parameters
-print 'Least squares parameters'
-print '%.2f' %param1, '\t', '%.2f' %param2, '\t', '%.2f' %param3
+print ('Least squares parameters')
+print ('%.2f' %param1, '%.2f' %param2, '%.2f' %param3)
 
 
 #*********************************
@@ -119,7 +119,7 @@ M = J - np.reshape(L, (N,N))                #best fit from prinicipal component 
 lev = np.linspace(0,5,11)
 pl.contour(X,Y,M, levels=lev)               #plot k(trueparam) - residuals(trueparam)
 pl.axes().set_aspect('equal')
-pl.title('The best fit from prinicipal component subspace to the true parameterised model')
+pl.title('The best fit from principal component subspace to the true parameterised model')
 pl.show()
 
 F = profile(lsq)                            #F = k(param) with optimised parameters
