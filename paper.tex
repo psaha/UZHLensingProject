@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{fixltx2e}
+\usepackage{amssymb,amsmath}
+
+\begin{document}
+
+\title{Paper}
+\author{L Oswald}
+\date{}
+
+\maketitle
+
+
+
+\section{Lucy's section}
+
+Introductory sentence here…
+In order to fit the set of pixelated models to a single parameterised model, a program was written that took a parameterised function and subtracted from it the mean and the principle components of the data, which were calculated using classical Principle Component Analysis. This created the residuals function. The number of components defined as principle was varied to test how this affected the output, and it was found that using 5 principle components tended to give a reasonable approximation. A masking function was added which selected only the data points that fell inside the image of the lens, and the principal components were clipped in order to keep the values inside the region of the ensemble of models. Any value higher than the clip was set to be the clip value. This was chosen to be 2.5 as, assuming that the data follows a Gaussian error distribution, almost all the values for the variance should lie between 2 and 3 standard deviations from the mean. Minimising the residuals function produces the set of parameters that fit the parameterised function to the original pixelated ensemble most closely. A least squares fit was used to perform this minimisation. 
+
+The parameterised model function was obtained from the gravitational potential of an isothermal ellipsoid mass distribution (Keeton, 2002). This model is frequently used to describe gravitational lenses as it tends to fit well with observations. The isothermal ellipsoid model outputs three useful parameters: the radius of the Einstein ring, the ellipticity of the model and the angle of the ellipticity from the vertical, giving the orientation of the galaxy. By applying this model to simulated lenses for which the values of these parameters were already known, it was possible to gain an estimate of the projected accuracy of the results, before applying the model to the candidate lensing galaxies.
+
+
+
+References
+Keeton C. R., 2002, “A Catalog of Mass Models for Gravitational Lensing”, arXiv:astro-ph/0102341v2
+
+
+\end{document}
